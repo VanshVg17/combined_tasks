@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./task16Views/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <form id="login">
+      <h1 class="login-header">login</h1>
+      <div class="login-fields">
+        <input type="text" name="username" id="username" placeholder="Enter your Username" /> <br />
+        <br />
+        <input type="password" name="password" id="password" placeholder="Enter your Password" />
+        <i class="bi bi-eye-fill showpass" style="display: none" onclick="togglePass('show')"></i>
+        <i class="bi bi-eye-slash-fill hidepass" onclick="togglePass('hide')"></i><br />
+        <p class="error" id="error">Invalid Credentials</p>
+      </div>
+      <span class="login-button" onclick="login()">Login</span>
+      <p class="forgot-password"><a href="/forgotPassword">Forgot password?</a></p>
+      <p class="new-user">New user?<a href="/register">Register</a></p>
+    </form>
+    <script src="./task16Views/script.js"></script>
+  </body>
+</html>

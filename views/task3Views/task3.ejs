@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 - Tic Tac Toe</title>
+</head>
+<style>
+    table {
+        margin: 5% 44%;
+        width: 200px;
+    }
+
+    td {
+        height: 20px;
+        width: 20px;
+        padding: 20px;
+    }
+
+    button {
+        margin: -5% 48%;
+        height: 60px;
+        width: 100px;
+    }
+</style>
+
+<body>
+    <h3 align="center">Vansh Gandhi &nbsp; 24DEV071 &nbsp; 05/02/2024</h1>
+        <table border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td id="td1" onclick="playGame(1)"></td>
+                <td id="td2" onclick="playGame(2)"></td>
+                <td id="td3" onclick="playGame(3)"></td>
+            </tr>
+
+            <tr>
+                <td id="td4" onclick="playGame(4)"></td>
+                <td id="td5" onclick="playGame(5)"></td>
+                <td id="td6" onclick="playGame(6)"></td>
+            </tr>
+
+            <tr>
+                <td id="td7" onclick="playGame(7)"></td>
+                <td id="td8" onclick="playGame(8)"></td>
+                <td id="td9" onclick="playGame(9)"></td>
+            </tr>
+        </table>
+        <button onclick="restartGame()">Restart the game</button>
+        <script>
+            var count = 0;
+            function winner(num) {
+                const win = [
+                    [1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9],
+                    [1, 4, 7],
+                    [2, 5, 8],
+                    [3, 6, 9],
+                    [1, 5, 9],
+                    [3, 5, 7]
+                ];
+                for (let i = 0; i < 8; i++) {
+                    const check = win[i];
+                    const box1 = check[0];
+                    const box2 = check[1];
+                    const box3 = check[2];
+
+                    if (document.getElementById(`td${box1}`).innerHTML == "" ||
+                        document.getElementById(`td${box2}`).innerHTML == "" ||
+                        document.getElementById(`td${box3}`).innerHTML == ""
+                    ) {
+                        continue;
+                    }
+
+                    if (document.getElementById(`td${box1}`).innerHTML == document.getElementById(`td${box2}`).innerHTML
+                        && document.getElementById(`td${box2}`).innerHTML == document.getElementById(`td${box3}`).innerHTML
+                    ) {
+                        alert(document.getElementById(`td${box2}`).innerHTML + " Won");
+                        count--;
+                        break;
+                    }
+                }
+            }
+            function playGame(id) {
+                if (count % 2 == 0) {
+                    if (document.getElementById(`td${id}`).innerHTML != "") {
+                        alert("Invalid Entry");
+                    } else {
+                        document.getElementById(`td${id}`).innerText = "X"
+                        winner(id)
+                        count++;
+                    }
+                } else {
+                    if (document.getElementById(`td${id}`).innerHTML != "") {
+                        alert("Invalid Entry");
+                    } else {
+                        document.getElementById(`td${id}`).innerText = "O"
+                        winner(id)
+                        count++;
+                    }
+                }
+
+                if (count == 9) {
+                    alert("Match is Drawn");
+                }
+            }
+
+            function restartGame() {
+                location.reload();
+            }
+        </script>
+</body>
+
+</html>

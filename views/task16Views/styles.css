@@ -1,0 +1,209 @@
+#register {
+  border: 1px solid black;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 650px;
+}
+
+h1 {
+  margin: 0 auto;
+  max-width: 155px;
+  margin-bottom: 40px;
+  margin-top: 50px;
+}
+
+.name {
+  display: flex;
+  max-width: 450px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  justify-content: space-evenly;
+}
+
+.name input {
+  border: 1px solid black;
+}
+
+.fields > input {
+  margin-left: 55px;
+  margin-top: 20px;
+  width: 385px;
+  border: 1px solid black;
+}
+
+.fields {
+  margin-bottom: 30px;
+}
+
+.submit-button {
+  padding: 15px 15px;
+  margin-left: 170px;
+  border: 1px solid blue;
+  border-radius: 6px;
+  color: blue;
+  transition: 0.3s ease;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+
+.showpass:hover {
+  cursor: pointer;
+}
+
+.hidepass:hover {
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  display: none;
+  margin-left: 55px;
+}
+
+.activate {
+  color: purple;
+  text-decoration: underline;
+}
+
+.activate:hover {
+  cursor: pointer;
+}
+
+#login {
+  border: 1px solid black;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 40px;
+  height: 500px;
+}
+
+.login-fields > input {
+  margin-left: 55px;
+  margin-top: 20px;
+  width: 385px;
+  border: 1px solid black;
+}
+
+.login-fields {
+  margin-bottom: 50px;
+}
+
+.login-button {
+  padding: 15px 35px;
+  margin-left: 190px;
+  border: 1px solid blue;
+  border-radius: 6px;
+  color: blue;
+  transition: 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.login-button:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+
+#error {
+  margin-top: 1000px;
+}
+
+.already-user {
+  margin-top: 50px;
+  margin-left: 165px;
+}
+
+.forgot-password {
+  margin-top: 50px;
+  margin-left: 175px;
+}
+
+.forgot-password:hover {
+  cursor: pointer;
+}
+
+.new-user {
+  margin-top: 20px;
+  margin-left: 168px;
+}
+
+.login-header {
+  margin-left: 210px;
+}
+
+#forgot-password-field {
+  margin-left: 180px;
+  width: 230px;
+  margin-bottom: 20px;
+}
+
+.forgot-password-div {
+  margin-top: 100px;
+  margin-left: 350px;
+}
+
+.verify-button {
+  padding: 10px 10px;
+  color: blue;
+  border: 1px solid blue;
+  margin-left: 265px;
+  transition: 0.3s ease;
+}
+
+.verify-button:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+
+.change-password-div {
+  margin-top: 100px;
+  margin-left: 550px;
+}
+
+.change-title {
+  margin-left: 35px;
+}
+
+.change-password-div input {
+  width: 250px;
+}
+
+.change-password-button {
+  padding: 10px 10px;
+  color: blue;
+  border: 1px solid blue;
+  margin-left: 50px;
+  transition: 0.3s ease;
+}
+
+.change-password-button:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: white;
+}
+
+.change-error {
+  display: none;
+  color: red;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 15px;
+  padding: 10px 10px;
+  border: 1px solid black;
+  max-width: 200px;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+li:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
