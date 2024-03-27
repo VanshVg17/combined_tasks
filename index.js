@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
+const passport = require("passport");
 
 const task16Routes = require("./routes/task16Routes");
 const task1Routes = require("./routes/task1Routes");
@@ -12,6 +13,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/views"));
 
+app.use(passport.initialize());
 app.use(bodyParser.json());
 
 app.use("/", task16Routes);
