@@ -10,9 +10,6 @@ let promisedQuery = util.promisify(con.query).bind(con);
 const registerPage = (req, res) => {
   console.log("registerPage API called");
   try {
-    if (req.headers.cookie) {
-      res.redirect("/dashboard");
-    }
     res.render("./task16Views/register.ejs");
   } catch (error) {
     console.log("Error inside registerPage API", error);
@@ -132,9 +129,6 @@ const activateAccount = async (req, res) => {
 const loginPage = (req, res) => {
   console.log("loginPage API called");
   try {
-    if (req.headers.cookie) {
-      res.redirect("/dashboard");
-    }
     res.render("./task16Views/login.ejs");
   } catch (error) {
     console.log("Error inside loginPage API", error);
@@ -183,9 +177,6 @@ const login = async (req, res) => {
 const forgotPasswordPage = (req, res) => {
   console.log("forgotPasswordPage API called");
   try {
-    if (req.headers.cookie) {
-      res.redirect("/dashboard");
-    }
     res.render("./task16Views/forgotPasswordPage.ejs");
   } catch (error) {
     console.log("Error inside forgotPasswordPage", error);
@@ -233,9 +224,6 @@ const verifyAccount = async (req, res) => {
 const changePasswordPage = (req, res) => {
   console.log("changePasswordPage API called");
   try {
-    if (req.headers.cookie) {
-      res.redirect("/dashboard");
-    }
     res.render("./task16Views/changePassword.ejs");
   } catch (error) {
     console.log("Error inside changePasswordPage API", error);

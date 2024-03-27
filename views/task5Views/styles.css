@@ -1,0 +1,54 @@
+table {
+  margin-top: 60px;
+  width: 1300px;
+}
+
+tr,
+td,
+th {
+  margin: 0 auto;
+  border: 2px solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+}
+
+.pagination {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 150px;
+}
+
+.result-button {
+  font-size: 18px;
+}
+
+.student_name {
+  font-size: 30px;
+  margin-top: 40px;
+  margin-left: 0px;
+}
+
+.student_attendance {
+  font-size: 18px;
+  max-width: 310px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.result-table {
+  height: 10vh;
+  margin-top: 30px;
+}
+
+.show-more {
+  color: purple;
+  text-decoration: underline;
+  margin-bottom: 200px;
+}
+
+.show-more:hover {
+  cursor: pointer;
+}

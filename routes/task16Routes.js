@@ -11,15 +11,15 @@ router.post("/register", controller.registerUser);
 router.get("/activateAccount/:userid/:activationkey", controller.activateAccount);
 router.get("/login", controller.loginPage);
 router.post("/login", controller.login);
-router.post(
-  "/verifyAccount",
-  passport.authenticate("jwt", { session: false }),
-  controller.verifyAccount
-);
+router.post("/verifyAccount", controller.verifyAccount);
 router.get("/forgotPassword", controller.forgotPasswordPage);
 router.get("/changePassword/:userid/:activationKey", controller.changePasswordPage);
 router.post("/changePassword", controller.changePassword);
-router.get("/dashboard", passport.authenticate("jwt", { session: false }), controller.dashboard);
+router.get(
+  "/dashboard",
+  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
+  controller.dashboard
+);
 router.post("/logout", controller.logout);
 
 module.exports = router;

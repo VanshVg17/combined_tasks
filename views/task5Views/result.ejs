@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result</title>
+    <link rel="stylesheet" href="/task5Views/styles.css" />
+  </head>
+  <body>
+    <a href="/task5/result">Home</a>
+    <form action="/task5/result" method="post">
+    <p id="student_id">
+      <input type="text" placeholder="Enter a Student ID" id="student-id-input" name="student_id" tabindex="1" autofocus> <button type="submit" tabindex="2">Go</button>
+      <a class="show-more" tabindex="3" onclick='showMore("student_id")'>Show More</a>
+    </p>
+    <p>See attendance report: <a href="/task5/students">Attendance Report</a></p>
+
+    <p style="display: none;" id="multi">
+      <input type="text" placeholder="Enter Student's first name" name="first_name" tabindex="1">
+      <input type="text" placeholder="Enter Student's last name" name="last_name" tabindex="2">
+      <input type="text" placeholder="Enter Student's email id" name="email_id" tabindex="3">
+      <select name="option">
+        <option value="Or" >OR</option>
+        <option  value="And" >AND</option>
+      </select>
+      <button type="submit" tabindex="4">Go</button>
+      <a class="show-more" tabindex="5" onclick='showMore("multi")'>Show Less</a>
+    </p>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Student ID</th>
+          <th rowspan="2">First Name</th>
+          <th rowspan="2">Last Name</th>
+          <th rowspan="2">Email ID</th>
+          <th colspan="2">Terminal</th>
+          <th colspan="2">Prelim</th>
+          <th colspan="2">Final</th>
+          <th rowspan="2">Total</th>
+          <th rowspan="2"></th>
+        </tr>
+        <tr>
+          <th>Practical</th>
+          <th>Theory</th>
+          <th>Practical</th>
+          <th>Theory</th>
+          <th>Practical</th>
+          <th>Theory</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<terminal.length; i++) {%>
+          <tr>
+            <td><%=terminal[i].student_id%></td>
+            <td><%=terminal[i].first_name%></td>
+            <td><%=terminal[i].last_name%></td>
+            <td><%=terminal[i].email_id%></td>
+            <td><%=terminal[i].practical%></td>
+            <td><%=terminal[i].theory%></td>
+            <td><%=prelim[i].practical%></td>
+            <td><%=prelim[i].theory%></td>
+            <td><%=final[i].practical%></td>
+            <td><%=final[i].theory%></td>
+            <td><%=total[i].total%></td>
+            <td><a href="/task5/result/<%=terminal[i].student_id%>"><button class="result-button">View Result</button></a></td>
+          </tr>
+          <%} %>
+      </tbody>
+    </table>
+    <% if(page!== false) {%>
+    <div class="pagination">
+      <% if(page===1) {%>
+        <a><button disabled><<</button></a>
+        <a><button disabled><</button></a>
+        <%} else {%>
+          <a href="?page=1"><button><<</button></a>
+        <a href="?page=<%=page-1%>"><button><</button></a>
+          <%}%>
+      <a><button><%=page%></button></a>
+      <% if(page===lastpage) {%>
+        <a><button disabled>></button></a>
+        <a><button disabled>>></button></a>
+        <%} else {%>
+          <a href="?page=<%=page+1%>"><button>></button></a>
+          <a href="?page=<%=lastpage%>"><button>>></button></a>
+          <%}%>
+  </div>
+  <%}%>
+</body>
+<script>
+  const showMore = (id)=>{
+    if(id==="student_id"){
+      document.getElementById("student-id-input").value=""
+      document.getElementById("student_id").style.display="none"
+      document.getElementById("multi").style.display="block"
+    } else {
+      document.getElementById("student_id").style.display="block"
+      document.getElementById("multi").style.display="none"
+    }
+  }
+</script>
+</html>

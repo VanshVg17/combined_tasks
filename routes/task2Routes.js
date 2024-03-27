@@ -6,6 +6,10 @@ const task2Controller = require("../controllers/task2Controllers");
 
 const router = express.Router();
 
-router.get("/", passport.authenticate("jwt", { session: false }), task2Controller.show);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
+  task2Controller.show
+);
 
 module.exports = router;

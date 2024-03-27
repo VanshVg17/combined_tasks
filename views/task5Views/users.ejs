@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users</title>
+    <link rel="stylesheet" href="/task5Views/styles.css" />
+  </head>
+  <body>
+    <h2>Vansh Gandhi: 24DEV071</h2>
+    <p>Choose a Month: <select id="month" onchange="changeMonth()">
+      <% if(month=="december-2023") {%>
+        <option value="december-2023" selected>December 2023</option>
+        <option value="january-2024">January 2024</option>
+        <option value="february-2024">February 2024</option>
+        <%}%>
+      <% if(month=="january-2024") {%>
+        <option value="december-2023">December 2023</option>
+        <option value="january-2024" selected>January 2024</option>
+        <option value="february-2024">February 2024</option>
+        <%}%>
+      <% if(month=="february-2024") {%>
+        <option value="december-2023">December 2023</option>
+        <option value="january-2024" >January 2024</option>
+        <option value="february-2024" selected>February 2024</option>
+        <%}%>
+      
+  </select></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Present Days</th>
+          <th>Percent of present days</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i=0; i<data.length; i++) { %>
+          <tr>
+            <td><%=data[i].student_id%></td>
+            <td><%=data[i].first_name%></td>
+            <td><%=data[i].last_name%></td>
+            <td><%=data[i].attendance%></td>
+            <td><%=data[i].Percentage%>%</td>
+          </tr>
+        <%} %>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <% if(page===1) {%>
+        <a><button disabled><<</button></a>
+        <a><button disabled><</button></a>
+        <%} else {%>
+          <a href="?page=1&month=<%=month%>"><button><<</button></a>
+        <a href="?page=<%=page-1%>&month=<%=month%>"><button><</button></a>
+          <%}%>
+      <a><button><%=page%></button></a>
+      <% if(page===lastpage) {%>
+        <a><button disabled>></button></a>
+        <a><button disabled>>></button></a>
+        <%} else {%>
+          <a href="?page=<%=page+1%>&month=<%=month%>"><button>></button></a>
+          <a href="?page=<%=lastpage%>&month=<%=month%>"><button>>></button></a>
+          <%}%>
+    </div>
+    <script>
+      let changeMonth = ()=>{
+        let value=document.getElementById("month").value
+        window.location.href=`?page=1&month=${value}`
+      }
+    </script>
+  </body>
+</html>
