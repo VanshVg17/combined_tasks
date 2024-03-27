@@ -3,6 +3,7 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
+require("./config/dbConfig");
 const task16Routes = require("./routes/task16Routes");
 const task1Routes = require("./routes/task1Routes");
 const task2Routes = require("./routes/task2Routes");

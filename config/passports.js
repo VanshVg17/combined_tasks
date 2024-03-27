@@ -4,7 +4,7 @@ const util = require("util");
 
 require("dotenv").config();
 
-const con = require("./task16Config");
+const con = require("./dbConfig");
 
 let promisedQuery = util.promisify(con.query).bind(con);
 

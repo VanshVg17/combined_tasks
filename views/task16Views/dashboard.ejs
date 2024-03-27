@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./task16Views/styles.css" />
   </head>
   <body>
+    <p class="logout" onclick="logout()">Logout</p>
     <ul>
       <li onclick="openTask1()">Dynamic Table</li>
       <li onclick="openTask2()">Kuku Kube</li>
@@ -29,6 +30,17 @@
       };
       const openTask3 = () => {
         window.location.href = "/task3";
+      };
+      const logout = async () => {
+        let logout = await fetch("/logout", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+        });
+        let response = await logout.json();
+        console.log(response);
+        if (response.type == "success") {
+          window.location.href = "/login";
+        }
       };
     </script>
   </body>

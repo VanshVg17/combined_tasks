@@ -2,7 +2,7 @@ const util = require("util");
 const randomstring = require("randomstring");
 const md5 = require("md5");
 
-const con = require("../config/task16Config");
+const con = require("../config/dbConfig");
 const { generateJwtToken } = require("../utils");
 
 let promisedQuery = util.promisify(con.query).bind(con);
@@ -10,6 +10,9 @@ let promisedQuery = util.promisify(con.query).bind(con);
 const registerPage = (req, res) => {
   console.log("registerPage API called");
   try {
+    if (req.headers.cookie) {
+      res.redirect("/dashboard");
+    }
     res.render("./task16Views/register.ejs");
   } catch (error) {
     console.log("Error inside registerPage API", error);
@@ -129,6 +132,9 @@ const activateAccount = async (req, res) => {
 const loginPage = (req, res) => {
   console.log("loginPage API called");
   try {
+    if (req.headers.cookie) {
+      res.redirect("/dashboard");
+    }
     res.render("./task16Views/login.ejs");
   } catch (error) {
     console.log("Error inside loginPage API", error);
@@ -278,6 +284,18 @@ const dashboard = (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  console.log("Inside logout API");
+  try {
+    res.status(200).clearCookie("token").json({
+      type: "success",
+      message: "logout successful",
+    });
+  } catch (error) {
+    console.log("Error inside logout API", error);
+  }
+};
+
 module.exports = {
   registerPage,
   registerUser,
@@ -289,4 +307,5 @@ module.exports = {
   changePasswordPage,
   changePassword,
   dashboard,
+  logout,
 };

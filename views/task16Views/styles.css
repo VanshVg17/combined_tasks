@@ -192,6 +192,12 @@ h1 {
   color: red;
 }
 
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
 li {
   list-style-type: none;
   margin-bottom: 15px;
@@ -200,10 +206,26 @@ li {
   max-width: 200px;
   border-radius: 8px;
   transition: 0.3s ease;
+  width: calc(100% / 5);
+  margin-left: 10px;
 }
 
 li:hover {
   cursor: pointer;
   background-color: black;
+  color: white;
+}
+
+.logout {
+  padding: 10px 10px;
+  border: 1px solid blue;
+  transition: 0.3s ease;
+  max-width: 60px;
+  margin-left: 1050px;
+}
+
+.logout:hover {
+  cursor: pointer;
+  background-color: blue;
   color: white;
 }
