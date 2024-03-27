@@ -1,0 +1,26 @@
+table {
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+p {
+  max-width: 570px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+p input {
+  width: 500px;
+}
+
+tr,
+td,
+th {
+  margin: 0 auto;
+  border: 2px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}

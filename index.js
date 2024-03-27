@@ -11,6 +11,7 @@ const task3Routes = require("./routes/task3Routes");
 const task4Routes = require("./routes/task4Routes");
 const task5Routes = require("./routes/task5Routes");
 const task6Routes = require("./routes/task6Routes");
+const task7Routes = require("./routes/task7Routes");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/task3", task3Routes);
 app.use("/task4", task4Routes);
 app.use("/task5", task5Routes);
 app.use("/task6", task6Routes);
+app.use("/task7", task7Routes);
 
 app.listen(process.env.PORT, (error) => {
   if (error) {
