@@ -12,7 +12,7 @@
       <li onclick="openTask1()">Dynamic Table</li>
       <li onclick="openTask2()">Kuku Kube</li>
       <li onclick="openTask3()">Tic Tac Toe</li>
-      <li>Task4</li>
+      <li onclick="openTask4()">Pagination and Sorting</li>
       <li>Task5</li>
       <li>Task6</li>
       <li>Task7</li>
@@ -22,15 +22,6 @@
       <li>Task11</li>
     </ul>
     <script>
-      const openTask1 = () => {
-        window.location.href = "/task1";
-      };
-      const openTask2 = () => {
-        window.location.href = "/task2";
-      };
-      const openTask3 = () => {
-        window.location.href = "/task3";
-      };
       const logout = async () => {
         let logout = await fetch("/logout", {
           method: "post",
@@ -41,6 +32,22 @@
         if (response.type == "success") {
           window.location.href = "/login";
         }
+      };
+
+      const openTask1 = () => {
+        window.location.href = "/task1";
+      };
+
+      const openTask2 = () => {
+        window.location.href = "/task2";
+      };
+
+      const openTask3 = () => {
+        window.location.href = "/task3";
+      };
+
+      const openTask4 = () => {
+        window.location.href = "/task4/users/1";
       };
     </script>
   </body>

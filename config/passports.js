@@ -20,7 +20,7 @@ module.exports = (passport) => {
     new jwtStrategy(
       {
         secretOrKey: process.env.JWT_SECRET_KEY,
-        jwtFromRequest: jwtExtract.fromExtractors([extractCookie], { failmessage: "Invalid" }),
+        jwtFromRequest: jwtExtract.fromExtractors([extractCookie]),
       },
       async (jwt_payload, done) => {
         let query = `SELECT * from users WHERE username="${jwt_payload.data.username}"`;

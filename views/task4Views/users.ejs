@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Users</title>
+    <link rel="stylesheet" href="/task4Views/styles.css" />
+  </head>
+  <body>
+    <% if(order!==false){ %>
+    <h3 align="center"><%=order%> by:<%=sort%></h3>
+    <%}%>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Student ID</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/student_id/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/student_id/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"><button class="field-button">First Name</button> </a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/first_name/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/first_name/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Last Name</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/last_name/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/last_name/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Contact No.</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/contact_no/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/contact_no/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Email ID</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/email_id/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/email_id/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">City</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/city/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/city/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">State</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/state/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/state/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Pincode</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/pincode/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/pincode/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Father Name</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/father_name/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/father_name/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">Mother Name</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/mother_name/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/mother_name/desc"><button>Desc</button></a>
+            </div>
+          </th>
+          <th>
+            <a href="/task4/users/1"> <button class="field-button">College Name</button></a>
+            <div class="sort-buttons">
+              <a href="/task4/users/1/sortby/college_name/asc"><button>Asc</button></a>
+              <a href="/task4/users/1/sortby/college_name/desc"><button>Desc</button></a>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+        <form action="/task4/showuser/<%=data[i].userId%>" method="get">
+          <tr>
+            <td><%= data[i].student_id %></td>
+            <td><%= data[i].first_name %></td>
+            <td><%= data[i].last_name %></td>
+            <td><%= data[i].contact_no %></td>
+            <td><%= data[i].email_id %></td>
+            <td><%= data[i].city %></td>
+            <td><%= data[i].state %></td>
+            <td><%= data[i].pincode %></td>
+            <td><%= data[i].father_name %></td>
+            <td><%= data[i].mother_name %></td>
+            <td><%= data[i].college_name %></td>
+          </tr>
+        </form>
+        <% } %>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <% if(pageno==1) { %>
+      <button disabled><<</button>
+      <button disabled><</button>
+      <% } else { %> <% if(sort===false) { %>
+      <a href="/task4/users/1"> <button><<</button></a>
+      <a href="/task4/users/<%=pageno-1%>"><button><</button></a>
+      <%} else {%>
+      <a href="/task4/users/1/sortby/<%=sort%>/<%=order%>"> <button><<</button></a>
+      <a href="/task4/users/<%=pageno-1%>/sortby/<%=sort%>/<%=order%>"><button><</button></a>
+      <% } %> <% } %>
+
+      <button><%=pageno%></button>
+      <% if(pageno==5) { %>
+      <button disabled>></button>
+      <button disabled>>></button>
+      <% } else { %> <% if(sort===false) { %>
+      <a href="/task4/users/<%=pageno+1%>"><button>></button></a>
+      <a href="/task4/users/5"> <button>>></button></a>
+      <%} else {%>
+      <a href="/task4/users/<%=pageno+1%>/sortby/<%=sort%>/<%=order%>"><button>></button></a>
+      <a href="/task4/users/5/sortby/<%=sort%>/<%=order%>"> <button>>></button></a>
+      <% } %> <% } %>
+    </div>
+    <p class="total">Total Records: <%=total%></p>
+  </body>
+</html>

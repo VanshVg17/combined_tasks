@@ -1,0 +1,59 @@
+body {
+  margin: 0 auto;
+}
+
+table tr td {
+  border: 2px solid;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+table,
+thead,
+tr,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table tr th,
+td {
+  text-align: center;
+}
+
+.pagination {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 150px;
+}
+
+.total {
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  max-width: 173px;
+}
+
+.field-button {
+  border: none;
+  font-size: 17px;
+  padding: 10px 10px;
+  transition: 0.3s ease;
+}
+
+.field-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.sort-buttons {
+  display: flex;
+  margin-top: 10px;
+}
+
+.sort-buttons a {
+  margin: 0 auto;
+}
