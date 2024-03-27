@@ -1,0 +1,22 @@
+tr,
+td,
+th {
+  margin: 0 auto;
+  border: 2px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.pagination {
+  margin: 0 auto;
+  margin-top: 20px;
+  max-width: 150px;
+  display: flex;
+}
+
+.fields a {
+  margin-left: 2px;
+}

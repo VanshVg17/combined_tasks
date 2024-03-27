@@ -11,6 +11,9 @@ let promisedQuery = util.promisify(con.query).bind(con);
 const extractCookie = (req) => {
   if (req.headers.cookie) {
     let token = req.headers.cookie.split("=")[1];
+    if (token.includes("query")) {
+      token = token.split(";")[0];
+    }
     return token;
   }
 };

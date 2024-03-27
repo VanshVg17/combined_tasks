@@ -1,30 +1,25 @@
 const express = require("express");
 const passport = require("passport");
 
-const controller = require("../controllers/task5Controllers");
+const controller = require("../controllers/task6Controllers");
 require("../config/passports")(passport);
 
 const router = express.Router();
 
 router.get(
-  "/students",
+  "/query",
+  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
+  controller.showData
+);
+router.post(
+  "/query",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
   controller.showData
 );
 router.get(
-  "/result",
+  "*",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.resultData
-);
-router.get(
-  "/result/:id",
-  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.showOneResult
-);
-router.post(
-  "/result",
-  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.search
+  controller.invalidRoute
 );
 
 module.exports = router;
