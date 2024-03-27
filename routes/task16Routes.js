@@ -16,16 +16,9 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   controller.verifyAccount
 );
-router.get(
-  "/changePassword/:userid/:activationKey",
-  passport.authenticate("jwt", { session: false }),
-  controller.changePasswordPage
-);
-router.post(
-  "/changePassword",
-  passport.authenticate("jwt", { session: false }),
-  controller.changePassword
-);
+router.get("/forgotPassword", controller.forgotPasswordPage);
+router.get("/changePassword/:userid/:activationKey", controller.changePasswordPage);
+router.post("/changePassword", controller.changePassword);
 router.get("/dashboard", passport.authenticate("jwt", { session: false }), controller.dashboard);
 router.post("/logout", controller.logout);
 
