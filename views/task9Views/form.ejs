@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form 1</title>
+    <link rel="stylesheet" href="/task9Views/styles.css">
+</head>
+
+<body>
+    <% if(basicDetailsResult[0].first_name) {%>
+        <form action="/task9/updateUser/<%=basicDetailsResult[0].application_id%>" onsubmit="return validation()" method="post">
+    <%} else {%>
+        <form action="/task9/createUser" onsubmit="return validation()" method="post">
+    <%}%>
+        <h1 align="center">Job Application Form</h1>
+
+        <div class="basicDetail tab">
+        <fieldset>
+            <legend>
+                <h2>Basic Details</h3>
+            </legend>
+
+            <div class="basic-details">
+                <p>First Name: <input type="text" name="first_name" value="<%=basicDetailsResult[0].first_name%>" id="first_name" placeholder="First Name"></p>
+                <p id="first_name_error" class="error">Please Enter First Name</p>
+                <p>Last Name: <input type="text" value="<%=basicDetailsResult[0].last_name%>" name="last_name" id="last_name"></p>
+                <p id="last_name_error" class="error">Please Enter Last Name</p>
+                 
+                <p>Designation: <input type="text" name="designation" value="<%=basicDetailsResult[0].designation%>" id="designation"></p>
+                <p id="designation_error" class="error">Please Enter Designation</p>
+                 
+                <p>Address1: <input type="text" name="address1" value="<%=basicDetailsResult[0].address1%>" id="address1"></p>
+                <p id="address1_error" class="error">Please Enter Your address</p>
+                <p>Address2: <input type="text" name="address2" value="<%=basicDetailsResult[0].address2%>" id="address2"></p>  
+                <p>City: <input type="text" name="city" value="<%=basicDetailsResult[0].city%>" id="city"></p>
+                <p id="city_error" class="error">Please Enter Your City</p>
+                <p>State: <select name="state" id="state">
+                    <option name="gujarat" selected>Gujarat</option>
+                    <option name="Maharashtra">Maharashtra</option>
+                    <option name="rajasthan">Rajasthan</option>
+                    <option name="Madhya Pradesh">Madhya Pradesh</option>
+                    <option name="uttarpradesh">Uttar Pradesh</option>
+                    <option name="tamilnadu">Tamilnadu</option>
+                    <option name="karnataka">Karnataka</option>
+                </select></p>
+                <p>Zipcode: <input type="text" name="zipcode" value="<%=basicDetailsResult[0].zipcode%>" id="zipcode"></p>
+                <p id="zipcode_error" class="error">Please Enter Your Zipcode correctly</p>
+                  
+                <p>Email: <input type="text" name="email_id" value="<%=basicDetailsResult[0].email_id%>" id="email_id"></p>
+                <p id="email_id_error" class="error">Please Enter Your Email ID correctly</p>
+                  
+                <p>Phone Number: <input type="text" name="contact_no" value="<%=basicDetailsResult[0].contact_no%>" id="contact_no"></p>
+                <p id="contact_no_error" class="error">Please Enter Your Contact Number correctly</p>
+                  
+                <p id="gender">Gender: <input name="gender" type="radio" id="male" value="male" checked> Male <input name="gender" type="radio" id="female" value="female"> Female</p>  
+                <p>Relationship Status: <select name="relationship_status" id="relationship_status">
+                    <option name="single">Single</option>
+                    <option name="married">Married</option>
+                    <option name="other">Other</option>
+                </select></p>
+                <p>Date of Birth: <input type="text" placeholder="YYYY-MM-DD" name="birth_date" id="dob" <% if(basicDetailsResult[0].birth_date){%>value='<%=basicDetailsResult[0].birth_date.getFullYear()%>-<%=basicDetailsResult[0].birth_date.getMonth()+1%>-<%=basicDetailsResult[0].birth_date.getDate()%>'<%}%> ></p>
+                <p id="dob_error" class="error">Please Enter Your Date Of Birth correctly</p>
+                
+            </div>
+        </fieldset>
+    </div>
+
+
+    <div class="educationDetail tab" style="display: none;">
+        <fieldset>
+            <legend>
+                <h2>Education Details</h2>
+            </legend>
+            <!-- <span class="addfield" onclick="addEducationField()">+</span>
+            <span class="addfield" onclick="removeEducationField()">-</span>
+            <br>
+            <br> -->
+            <div id="education-parent" >
+                <div id="education-child1" class="select">
+                    <span>Course</span> <select name="course[]" id="course1">
+                        <option name="SSC">SSC</option>
+                        <option name="HSC">HSC</option>
+                        <option name="B.Tech">B.Tech</option>
+                    </select>
+                   
+                    <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[0].course_passing_year){%> value='<%=educationDetailsResult[0].course_passing_year.getFullYear()%>-<%=educationDetailsResult[0].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[0].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year1"> 
+                    <p name="course_passing_year_error" id="course_passing_year1_error" class="error">Please Enter Your course passing year correctly</p>
+                      <span>Percentage</span> <input type="text" name="course_percentage[]" value="<%=educationDetailsResult[0].course_percentage%>" id="course_percentage1">
+                    <p name="course_percentage_error" id="course_percentage1_error" class="error">Please Enter Your course percentage correctly</p>
+                </div>
+                <div id="education-child2" class="select">
+                    <span>Course</span> <select name="course[]" id="course2">
+                        <option name="SSC">SSC</option>
+                        <option name="HSC">HSC</option>
+                        <option name="B.Tech">B.Tech</option>
+                    </select>
+                    <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[1].course_passing_year){%> value='<%=educationDetailsResult[1].course_passing_year.getFullYear()%>-<%=educationDetailsResult[1].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[1].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year2"> 
+                    <p name="course_passing_year_error" id="course_passing_year2_error" class="error">Please Enter Your course passing year correctly</p>
+                      <span>Percentage</span> <input type="text" name="course_percentage[]" value="<%=educationDetailsResult[1].course_percentage%>" id="course_percentage2">
+                    <p name="course_percentage_error" id="course_percentage2_error" class="error">Please Enter Your course percentage correctly</p>
+                </div>
+                <div id="education-child3" class="select">
+                    <span>Course</span> <select name="course[]" id="course3">
+                        <option name="SSC">SSC</option>
+                        <option name="HSC">HSC</option>
+                        <option name="B.Tech">B.Tech</option>
+                    </select>
+                    <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[2].course_passing_year){%> value='<%=educationDetailsResult[2].course_passing_year.getFullYear()%>-<%=educationDetailsResult[2].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[2].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year3"> 
+                    <p name="course_passing_year_error" id="course_passing_year3_error" class="error">Please Enter Your course passing year correctly</p>
+                      <span>Percentage</span> <input type="text" name="course_percentage[]" value="<%=educationDetailsResult[2].course_percentage%>" id="course_percentage3">
+                    <p name="course_percentage_error" id="course_percentage3_error" class="error">Please Enter Your course percentage correctly</p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="workExperience tab" style="display: none;">
+        <fieldset>
+            <legend>
+                <h2>Work Experience</h2>
+            </legend>
+
+            <!-- <span class="addfield" onclick="addCompanyField()">+</span>
+            <span class="addfield" onclick="removeCompanyField()">-</span>
+            <br>
+            <br> -->
+            <div id="company-parent">
+                <div id="company1">
+                    <span>Company Name</span> <input type="text" name="company_name[]" value="<%=workExperienceResult[0].company_name%>" id="company1_name">
+                    <p id="company1_name_error" class="error">Please Enter Your 1st company name</p>
+                    <span>Designation</span>  <input type="text" name="company_designation[]" value="<%=workExperienceResult[0].company_designation%>" id="company1_designation">
+                    <p id="company1_designation_error" class="error">Please Enter Your 1st company designation</p>
+                    <span>From</span> <input type="text" placeholder="YYYY-MM-DD"   name="company_joining_date[]" <% if(workExperienceResult[0].company_joining_date){%> value='<%=workExperienceResult[0].company_joining_date.getFullYear()%>-<%=workExperienceResult[0].company_joining_date.getMonth()+1%>-<%=workExperienceResult[0].company_joining_date.getDate()%>'<%}%> id="company1_joining_date">
+                    <p id="company1_joining_date_error" class="error">Please Enter Your 1st company joining date correctly</p>
+                    <span>To</span> <input
+                        type="text" placeholder="YYYY-MM-DD" name="company_leaving_date[]" <% if(workExperienceResult[0].company_leaving_date){%>value='<%=workExperienceResult[0].company_leaving_date.getFullYear()%>-<%=workExperienceResult[0].company_leaving_date.getMonth()+1%>-<%=workExperienceResult[0].company_leaving_date.getDate()%>'<%}%> id="company1_leaving_date">
+                    <p id="company1_leaving_date_error" class="error">Please Enter Your 1st company leaving date correctly</p>
+                    <br>
+                    <br>
+                </div>
+                <div id="company2">
+                    <span>Company Name</span> <input type="text" name="company_name[]" value="<%=workExperienceResult[1].company_name%>" id="company2_name">
+                    <p id="company2_name_error" class="error">Please Enter Your 2nd company name</p>
+                    <span>Designation</span>  <input type="text" name="company_designation[]" value="<%=workExperienceResult[1].company_designation%>" id="company2_designation">
+                    <p id="company2_designation_error" class="error">Please Enter Your 2nd company designation</p>
+                    <span>From</span> <input type="text" placeholder="YYYY-MM-DD"   name="company_joining_date[]" <% if(workExperienceResult[1].company_joining_date){%> value='<%=workExperienceResult[1].company_joining_date.getFullYear()%>-<%=workExperienceResult[1].company_joining_date.getMonth()+1%>-<%=workExperienceResult[1].company_joining_date.getDate()%>'<%}%> id="company2_joining_date">
+                    <p id="company2_joining_date_error" class="error">Please Enter Your 2nd company joining date correctly</p>
+                    <span>To</span> <input
+                        type="text" placeholder="YYYY-MM-DD" name="company_leaving_date[]" <% if(workExperienceResult[1].company_leaving_date){%>value='<%=workExperienceResult[1].company_leaving_date.getFullYear()%>-<%=workExperienceResult[1].company_leaving_date.getMonth()+1%>-<%=workExperienceResult[1].company_leaving_date.getDate()%>'<%}%> id="company2_leaving_date">
+                    <p id="company2_leaving_date_error" class="error">Please Enter Your 2nd company leaving date correctly</p>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="knownLanguages tab" style="display: none;">
+        <fieldset>
+            <legend>
+                <h2>Language Known</h2>
+            </legend>
+
+            <div class="hindi">
+                <input type="checkbox" name="languages[]" value="hindi" id="hindi"> Hindi <input type="checkbox" name="hindi[]" value="read" id="hindiread"> Read <input   type="checkbox" name="hindi[]" value="write" id="hindiwrite"> Write <input
+                  type="checkbox" name="hindi[]" value="speak" id="hindispeak">
+                Speak
+                <p id="hindi_error" class="error">Please choose language skill for Hindi</p>
+                <br> <br>
+            </div>
+
+            <div class="english">
+                <input type="checkbox" name="languages[]" value="english" id="english"> English <input type="checkbox" name="english[]" value="read" id="englishread"> Read <input type="checkbox" name="english[]" value="write" id="englishwrite"> Write <input
+                  type="checkbox" name="english[]" value="speak" id="englishspeak">
+                Speak
+                <p id="english_error" class="error">Please choose language skill for English</p>
+                <br> <br>
+            </div>
+
+            <div class="gujarati">
+                <input type="checkbox" name="languages[]" value="gujarati" id="gujarati"> Gujarati <input type="checkbox" name="gujarati[]" value="read" id="gujaratiread"> Read <input type="checkbox" name="gujarati[]" value="write" id="gujaratiwrite"> Write <input
+                type="checkbox" name="gujarati[]" value="speak" id="gujaratispeak">
+                Speak 
+                <p id="gujarati_error" class="error">Please choose language skill for Gujarati</p>
+                <br> <br>
+            </div>
+            <p id="language_error" class="error">Please choose atleast one language</p>
+        </fieldset>
+    </div>
+
+
+    <div class="knownTechnologies tab" style="display: none;">
+        <fieldset>
+            <legend>
+                <h2>Technologies you know</h2>
+            </legend>
+            
+            <div class="php">
+                <input type="checkbox" name="tech_name[]" value="php" id="php"> PHP <input type="radio" name="php" value="beginner" id="php_beginner"> Beginner <input type="radio" name="php" value="mideator" id="php_mideator">
+                Mideator
+                <input type="radio" name="php" value="expert" id="php_expert"> Expert
+                <p id="php_error" class="error">Please choose your level for PHP</p>
+            <br> <br>
+            </div>
+
+            <div class="mysql">
+                <input type="checkbox" name="tech_name[]" value="mysql" id="mysql"> Mysql <input type="radio" name="mysql" value="beginner" id="mysql_beginner"> Beginner <input type="radio" name="mysql" value="mideator" id="mysql_mideator">
+                Mideator
+                <input type="radio" name="mysql" value="expert" id="mysql_expert"> Expert 
+                <p id="mysql_error" class="error">Please choose your level for Mysql</p>
+                <br> <br>
+            </div>
+
+            <div class="laravel">
+                <input type="checkbox" name="tech_name[]" value="laravel" id="laravel"> Laravel <input type="radio" name="laravel" value="beginner" id="laravel_beginner"> Beginner <input type="radio" name="laravel" value="mideator" id="laravel_mideator">
+                Mideator
+                <input type="radio" name="laravel" value="expert" id="laravel_expert"> Expert
+                <p id="laravel_error" class="error">Please choose your level for laravel</p>
+                 <br> <br>
+            </div>
+
+            <div class="oracle">
+                <input type="checkbox" name="tech_name[]" value="oracle" id="oracle"> Oracle <input type="radio" name="oracle" value="beginner" id="oracle_beginner"> Beginner <input type="radio" name="oracle" value="mideator" id="oracle_mideator">
+                Mideator
+                <input type="radio" name="oracle" value="expert" id="oracle_expert"> Expert
+                <p id="oracle_error" class="error">Please choose your level for Oracle</p>
+                 <br> <br>
+            </div>
+            <p id="technology_error" class="error">Please choose atleast one technology</p>
+        </fieldset>
+    </div>
+        
+        
+    <div class="referenceContacts tab" style="display: none;">
+        <fieldset>
+            <legend>
+                <h2>Reference Contact</h2>
+            </legend>
+            <!-- <span class="addfield" onclick="addReferenceField()">+</span>
+            <span class="addfield" onclick="removeReferenceField()">-</span>
+            <br>
+            <br> -->
+
+            <div id="reference-parent">
+                <div id="reference_contact1">
+                    <span>Name</span> <input type="text" name="reference_contact_name[]" value="<%=referenceContactsResult[0].reference_contact_name%>" id="reference_contact1_name">
+                    <span>Number</span> <input type="text" name="reference_contact_number[]" value="<%=referenceContactsResult[0].reference_contact_number%>" id="reference_contact1_number"> <span>Relation</span> <input type="text" name="reference_contact_relation[]" value="<%=referenceContactsResult[0].reference_contact_relation%>" id="reference_contact1_relation">
+                    <p id="reference_contact1_error" class="error">Please Enter all details correctly</p>
+                    <br> <br>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+
+    <div class="preferences tab" style="display: none;">
+       <fieldset>
+            <legend>
+                <h2>Preferences</h2>
+            </legend>
+            Prefered Location <select name="prefered_location" id="prefered_location" multiple>
+                <option name="Gujarat" id="Gujarat">Gujarat</option>
+                <option name="Maharashtra" id="Maharashtra">Maharashtra</option>
+                <option name="Rajasthan" id="Rajasthan">Rajasthan</option>
+                <option name="MadhyaPradesh" id="MadhyaPradesh">MadhyaPradesh</option>
+                <option name="UttarPradesh" id="UttarPradesh">UttarPradesh</option>
+            </select>
+            Department <select name="department" id="department">
+                <option name="development" selected>Development</option>
+                <option name="design">Design</option>
+                <option name="marketing">Marketing</option>
+            </select> <br> <br>
+            Notice Period(if any) <input type="text" <% if(preferencesResult[0].notice_period!="null"){%>value="<%=preferencesResult[0].notice_period%>"<%}%> name="notice_period" id="notice_period">
+            Current CTC(if any) <input type="text" <% if(preferencesResult[0].current_ctc!="null"){%>value="<%=preferencesResult[0].current_ctc%>"<%}%> name="current_ctc" id="current_ctc"> Expected CTC <input type="text" value="<%=preferencesResult[0].expected_ctc%>" name="expected_ctc" id="expected_ctc">
+            <p id="expected_ctc_error" class="error">Please enter your expected ctc</p>
+        </fieldset>
+    </div>
+
+        <!-- <% if(basicDetailsResult[0].first_name) {%>
+            <button type="submit">Update</button>
+        <%} else {%>
+            <button type="submit">Submit</button>
+            <%}%> -->
+            <span class="prev-button" onclick="prevButton('basic_details')">Previous</span>
+            <span class="next-button" onclick="nextButton('education_details','work_experience')">Next</span>
+            
+        <script src="/task9Views/validation.js"></script>
+        <script>
+            let basicDetailsResult = JSON.parse(`<%-JSON.stringify(basicDetailsResult)%>`);
+            const addEducationField = () =>{
+                if(document.getElementById("fieldUnderflowError")) {
+                    document.getElementById("fieldUnderflowError").remove();
+                }
+                const educationParent = document.getElementById("education-parent")
+                const num = educationParent.childElementCount;
+                if(num<7) {
+                let div = document.createElement("div");
+                educationParent.appendChild(div)
+
+                div.id=`education-child${num+1}`
+                const courseSpan = document.createElement("span")
+                courseSpan.textContent = "Course "
+                div.appendChild(courseSpan)
+                
+                div.className="select"
+                const options = ["SSC", "HSC", "B.Tech", "BCA", "MCA", "MBA", "M.Tech"];
+                let selectList = document.createElement("select");
+                selectList.name="course[]";
+                options.forEach((element)=>{
+                    const option = document.createElement("option")
+                    option.name = element;
+                    option.text = element;
+                    selectList.appendChild(option)
+                })
+                div.appendChild(selectList)
+                const yearSpan = document.createElement("span")
+                yearSpan.textContent = " Passing Year "
+                div.appendChild(yearSpan)
+
+                const yearInput = document.createElement("input");
+                yearInput.type="text";
+                yearInput.placeholder="YYYY-MM-DD"
+                yearInput.name=`course_passing_year[]`
+                yearInput.id=`course_passing_year${num+1}`
+                div.appendChild(yearInput);
+
+                const yearError = document.createElement("p");
+                yearError.id=`course_passing_year${num+1}_error`
+                yearError.className="error"
+                yearError.textContent="Please Enter Your course passing year correctly"
+                div.appendChild(yearError)
+
+                const percentageSpan = document.createElement("span")
+                percentageSpan.textContent = " Percentage "
+                div.appendChild(percentageSpan)
+
+                const percentageInput = document.createElement("input");
+                percentageInput.type="text";
+                percentageInput.name="course_percentage[]"
+                percentageInput.id=`course_percentage${num+1}`
+                div.appendChild(percentageInput);
+
+                const percentageError = document.createElement("p");
+                percentageError.id=`course_percentage${num+1}_error`
+                percentageError.className="error"
+                percentageError.textContent="Please Enter Your course passing year correctly"
+                div.appendChild(percentageError)
+             } else {
+                if(document.getElementById("fieldOverflowError")) {
+                    document.getElementById("fieldOverflowError").remove();
+                }
+                const p = document.createElement("p")
+                p.textContent="You can't add education field anymore"
+                p.id="fieldOverflowError"
+                p.style.color="red"
+                educationParent.appendChild(p)
+             }
+            }
+
+            const removeEducationField = () => {
+                if(document.getElementById("fieldOverflowError")) {
+                    document.getElementById("fieldOverflowError").remove();
+                }
+                const educationParent = document.getElementById("education-parent")
+                const num = educationParent.childElementCount;
+                if(num>1) {
+                    document.getElementById(`education-child${num}`).remove();
+                } else {
+                    if(document.getElementById("fieldUnderflowError")) {
+                        document.getElementById("fieldUnderflowError").remove();
+                    }
+                    const p = document.createElement("p")
+                    p.textContent="You can't remove education field anymore"
+                    p.id="fieldUnderflowError"
+                    p.style.color="red"
+                    educationParent.appendChild(p)
+                }
+            }
+
+            const addCompanyField = () => {
+                if(document.getElementById("fieldUnderflowError")) {
+                        document.getElementById("fieldUnderflowError").remove();
+                    }
+                const companyParent = document.getElementById("company-parent")
+                const num = companyParent.childElementCount;
+
+                const companyDiv = document.createElement("div");
+                companyDiv.id=`company${num+1}`
+
+                const nameSpan = document.createElement("span")
+                nameSpan.textContent="Company Name "
+                companyDiv.appendChild(nameSpan)
+                const nameInput = document.createElement("input")
+                nameInput.type="text"
+                nameInput.name=`company_name[]`
+                nameInput.id=`company${num+1}_name`
+                companyDiv.appendChild(nameInput);
+                const nameError = document.createElement("p")
+                nameError.id=`company${num+1}_name_error`
+                nameError.className="error"
+                nameError.textContent=`Please Enter Company${num+1} name`
+                companyDiv.appendChild(nameError);
+
+                const designationSpan = document.createElement("span")
+                designationSpan.textContent=" Designation "
+                companyDiv.appendChild(designationSpan)
+                const designationInput = document.createElement("input")
+                designationInput.type="text"
+                designationInput.name=`company_designation[]`
+                designationInput.id=`company${num+1}_designation`
+                companyDiv.appendChild(designationInput);
+                const designationError = document.createElement("p")
+                designationError.id=`company${num+1}_designation_error`
+                designationError.className="error"
+                designationError.textContent=`Please Enter Company${num+1} designation`
+                companyDiv.appendChild(designationError);
+
+                const fromSpan = document.createElement("span")
+                fromSpan.textContent=" From "
+                companyDiv.appendChild(fromSpan)
+                const fromInput = document.createElement("input")
+                fromInput.type="text"
+                fromInput.name=`company_joining_date[]`
+                fromInput.id=`company${num+1}_joining_date`
+                fromInput.placeholder="YYYY-MM-DD"
+                companyDiv.appendChild(fromInput);
+                const fromError = document.createElement("p")
+                fromError.id=`company${num+1}_joining_date_error`
+                fromError.className="error"
+                fromError.textContent=`Please Enter Company${num+1} joining date correctly`
+                companyDiv.appendChild(fromError);
+
+                const toSpan = document.createElement("span")
+                toSpan.textContent=" To "
+                companyDiv.appendChild(toSpan)
+                const toInput = document.createElement("input")
+                toInput.type="text"
+                toInput.name=`company_leaving_date[]`
+                toInput.id=`company${num+1}_leaving_date`
+                toInput.placeholder="YYYY-MM-DD"
+                companyDiv.appendChild(toInput);
+                const toError = document.createElement("p")
+                toError.id=`company${num+1}_leaving_date_error`
+                toError.className="error"
+                toError.textContent=`Please Enter Company${num+1} leaving date correctly`
+                companyDiv.appendChild(toError);
+                const br1 = document.createElement("br")
+                companyDiv.appendChild(br1);
+                const br2 = document.createElement("br")
+                companyDiv.appendChild(br2);
+
+                companyParent.appendChild(companyDiv)
+            }
+
+            const removeCompanyField = () => {
+                const companyParent = document.getElementById("company-parent")
+                const num = companyParent.childElementCount;
+                if(num>1) {
+                    document.getElementById(`company${num}`).remove();
+                } else {
+                    if(document.getElementById("fieldUnderflowError")) {
+                        document.getElementById("fieldUnderflowError").remove();
+                    }
+                    const p = document.createElement("p")
+                    p.textContent="You can't remove experience field anymore"
+                    p.id="fieldUnderflowError"
+                    p.style.color="red"
+                    companyParent.appendChild(p)
+                }
+            }
+
+            const addReferenceField = () => {
+                const referenceParent= document.getElementById("reference-parent")
+                const num = referenceParent.childElementCount;
+
+                const referenceDiv = document.createElement("div");
+                referenceDiv.id=`reference_contact${num+1}`
+
+                const nameSpan = document.createElement("span")
+                nameSpan.textContent="Name "
+                referenceDiv.appendChild(nameSpan)
+                const nameInput = document.createElement("input")
+                nameInput.type="text"
+                nameInput.name=`reference_contact_name[]`
+                nameInput.id=`reference_contact${num+1}_name`
+                referenceDiv.appendChild(nameInput);
+
+                const numberSpan = document.createElement("span")
+                numberSpan.textContent=" Number "
+                referenceDiv.appendChild(numberSpan)
+                const numberInput = document.createElement("input")
+                numberInput.type="text"
+                numberInput.name=`reference_contact_number[]`
+                numberInput.id=`reference_contact${num+1}_number`
+                referenceDiv.appendChild(numberInput);
+
+                const relationSpan = document.createElement("span")
+                relationSpan.textContent=" Relation "
+                referenceDiv.appendChild(relationSpan)
+                const relationInput = document.createElement("input")
+                relationInput.type="text"
+                relationInput.name=`reference_contact_relation[]`
+                relationInput.id=`reference_contact${num+1}_relation`
+                referenceDiv.appendChild(relationInput);
+                const error = document.createElement("p")
+                error.id=`reference_contact${num+1}_error`
+                error.className="error"
+                error.textContent=`Please Enter all details correctly`
+                referenceDiv.appendChild(error);
+                const br1 = document.createElement("br")
+                referenceDiv.appendChild(br1);
+                const br2 = document.createElement("br")
+                referenceDiv.appendChild(br2);
+
+                referenceParent.appendChild(referenceDiv)
+            }   
+
+            if(basicDetailsResult[0].application_id) {
+                if(`<%=basicDetailsResult[0].state%>`){
+                document.getElementById("state").value=`<%=basicDetailsResult[0].state%>`
+            }
+            if(`<%=basicDetailsResult[0].gender%>`==="female") {
+            document.getElementById("female").checked=true
+            } else {
+            document.getElementById("male").checked=true
+                
+            }
+            if(`<%=basicDetailsResult[0].relationship_status%>`){
+                document.getElementById("relationship_status").value=`<%=basicDetailsResult[0].relationship_status%>`
+            }
+
+            if(`<%=educationDetailsResult[0].course%>`){
+                document.getElementById("course1").value=`<%=educationDetailsResult[0].course%>`
+            }
+            if(`<%=educationDetailsResult[1].course%>`){
+                document.getElementById("course2").value=`<%=educationDetailsResult[1].course%>`
+            }
+            if(`<%=educationDetailsResult[2].course%>`){
+                document.getElementById("course3").value=`<%=educationDetailsResult[2].course%>`
+            }
+            
+            let languages = JSON.parse(`<%-JSON.stringify(knownLanguagesResult)%>`)
+            languages.forEach((element)=>{
+                if(element["languages_name"]){
+                document.getElementById(element["languages_name"]).checked=true;
+                if(element["reading"]==="yes") {
+                document.getElementById(`${element["languages_name"]}read`).checked=true;
+                }
+                if(element["speaking"]==="yes") {
+                document.getElementById(`${element["languages_name"]}speak`).checked=true;
+                }
+                if(element["writing"]==="yes") {
+                document.getElementById(`${element["languages_name"]}write`).checked=true;
+                }
+              }
+            })
+
+            let technologies = JSON.parse(`<%-JSON.stringify(knownTechnologiesResult)%>`)
+            technologies.forEach((element)=>{
+                if(element["tech_name"]) {
+                    document.getElementById(element["tech_name"]).checked=true
+                    document.getElementById(`${element["tech_name"]}_${element["tech_level"]}`).checked=true
+                }
+            })
+
+            let locationPreferences = JSON.parse(`<%-JSON.stringify(preferencesResult)%>`)
+            let locations = locationPreferences[0]["prefered_location"].split(",");
+            locations.forEach((element)=>{
+                document.getElementById(element).selected=true
+            })
+
+            if(locationPreferences.department) {
+                document.getElementById("department").value=locationPreferences["department"]
+            }
+
+            }
+            
+            let currentPage = 0;
+            if(currentPage===0) {
+                document.getElementsByClassName("prev-button")[0].style.display="none"
+            }
+            let data = {};
+
+            const nextButton = async (currpage, nextpage) => {
+                let tabs = document.getElementsByClassName("tab");
+                let validate = tabs[currentPage].className.split(" ")[0];
+                if(!validation(validate)) {
+                    return;
+                }
+
+                let parent = tabs[currentPage].querySelectorAll("*")
+                if(validate=="basicDetail") {
+                    storeBasicData(parent);
+                }
+                if(validate=="educationDetail") {
+                    storeEducationData(parent)
+                }
+                if(validate=="workExperience") {
+                    storeWorkExperienceData(parent)
+                }
+                if(validate=="knownLanguages") {
+                    storeLanguageData(parent)
+                }
+                if(validate=="knownTechnologies") {
+                    storeTechnologyData(parent)
+                }
+                if(validate=="referenceContacts") {
+                    storeReferenceData(parent)
+                }
+                if(validate=="preferences") {
+                    storePreferenceData(parent)
+                }
+            
+                if(!basicDetailsResult[0].application_id) {
+                    if(currentPage+1===tabs.length) {
+                    let create = await fetch("/task9/createUser", {method:"post", headers: { "Content-Type": "application/json",}, body:JSON.stringify(data)})
+                    let response = await create.json();
+                    if(response.type=="Success") {
+                        localStorage.removeItem("basicDetail");
+                        localStorage.removeItem("educationDetail");
+                        localStorage.removeItem("knownLanguages");
+                        localStorage.removeItem("knownTechnologies");
+                        localStorage.removeItem("preferences");
+                        localStorage.removeItem("referenceContact");
+                        localStorage.removeItem("workExperience");
+                        window.location.href="/task9/showUsers"
+                    }
+                    return;
+                    }
+                } else {
+                    if(currentPage+1===tabs.length) {
+                    let update = await fetch(`/task9/updateUser/${basicDetailsResult[0].application_id}`, {method:"post", headers: { "Content-Type": "application/json",}, body:JSON.stringify(data)})
+                    let response = await update.json();
+                    if(response.type=="Success") {
+                        window.location.href="/task9/showUsers"
+                    }
+                    return;
+                }
+                }
+                tabs[currentPage].style.display="none"
+                currentPage++;
+                document.getElementsByClassName("prev-button")[0].style.display="inline"
+               
+                if(currentPage===tabs.length-1) {
+                    document.getElementsByClassName("next-button")[0].innerHTML="Save"
+                }
+                tabs[currentPage].style.display="block"
+               
+                validate = tabs[currentPage].className.split(" ")[0];
+                // getData(validate)
+            }
+
+            const prevButton = (page) => {
+                
+                let tabs = document.getElementsByClassName("tab");
+                tabs[currentPage].style.display="none"
+                currentPage--;
+                if(currentPage===0) {
+                document.getElementsByClassName("prev-button")[0].style.display="none"
+                }
+                document.getElementsByClassName("next-button")[0].innerHTML="Next"
+                tabs[currentPage].style.display="block"
+            }
+
+
+            const storeBasicData = (parent) =>{
+                parent.forEach((element)=>{
+                    if(element.tagName==="INPUT") {
+                        if(element.type=="text") {
+                            data[element.name]=element.value
+                        }
+                        if(element.type=="radio") {
+                            if(element.checked) {
+                                data[element.name] = element.value
+                            }
+                        }
+                    }
+                    if(element.tagName==="SELECT") {
+                        data[element.name] = element.value
+                    }
+                })
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("basicDetail", JSON.stringify(data))
+                }
+            }
+
+            const getBasicData = (validate) =>{
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*")
+                let newdata = JSON.parse(localStorage.getItem(validate))
+                parent.forEach((element)=>{
+                    if(element.tagName==="INPUT") {
+                        if(element.type=="text") {
+                            element.value=newdata[element.name]
+                        }
+                        if(element.type=="radio") {
+                            if(element.value==newdata[element.name]) {
+                                element.checked=true
+                            }
+                        }
+                    }
+                    if(element.tagName==="SELECT") {
+                        element.value = newdata[element.name]
+                    }
+                })
+            }
+
+            const storeEducationData = (parent) =>{
+                let course = [],course_passing_year=[],course_percentage=[];
+                parent.forEach((element)=>{
+                    if(element.tagName=="SELECT") {
+                        course.push(element.value);
+                    }
+                    if(element.name=="course_passing_year[]") {
+                        course_passing_year.push(element.value)
+                    }
+                    if(element.name=="course_percentage[]") {
+                        course_percentage.push(element.value)
+                    }
+                })
+                data.course=course, data.course_passing_year=course_passing_year, data.course_percentage=course_percentage;
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("educationDetail", JSON.stringify({course, course_passing_year, course_percentage}));
+                }
+            }
+
+            const getEducationData = (validate) =>{
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*")
+                let educationDetail = JSON.parse(localStorage.getItem("educationDetail"));
+                let i=1;
+                educationDetail.course.forEach((element)=>{
+                    document.getElementById(`course${i}`).value=element
+                    document.getElementById(`course_passing_year${i}`).value=educationDetail.course_passing_year[i-1]
+                    document.getElementById(`course_percentage${i}`).value=educationDetail.course_percentage[i-1]
+                    i++;
+                })
+            }
+
+            const storeWorkExperienceData = (parent) =>{
+                let company_name = [], company_designation=[],company_joining_date=[], company_leaving_date=[];
+                parent.forEach((element)=>{
+                    if(element.name=="company_name[]") {
+                        company_name.push(element.value)
+                    }
+                    if(element.name=="company_designation[]") {
+                        company_designation.push(element.value)
+                    }
+                    if(element.name=="company_joining_date[]") {
+                        company_joining_date.push(element.value)
+                    }
+                    if(element.name=="company_leaving_date[]") {
+                        company_leaving_date.push(element.value)
+                    }
+                })
+                data.company_name=company_name, data.company_designation=company_designation, data.company_joining_date=company_joining_date, data.company_leaving_date=company_leaving_date
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("workExperience",JSON.stringify({company_name,company_designation,company_joining_date,company_leaving_date}))
+                }
+            }
+
+            const getWorkExperienceData = (validate) => {
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*")
+                let workExperience = JSON.parse(localStorage.getItem(validate));
+                let i=1;
+                workExperience.company_name.forEach((element)=>{
+                    document.getElementById(`company${i}_name`).value = element;
+                    document.getElementById(`company${i}_designation`).value = workExperience.company_designation[i-1]
+                    document.getElementById(`company${i}_joining_date`).value = workExperience.company_joining_date[i-1]
+                    document.getElementById(`company${i}_leaving_date`).value = workExperience.company_leaving_date[i-1]
+                    i++;
+                })
+            }
+
+            const storeLanguageData = (parent) =>{
+                let languages = [];
+                parent.forEach((element)=>{
+                        if(element.name==="languages[]" && element.checked) {
+                            languages.push(element.value)
+                        }      
+                })
+                if(languages.includes("hindi")) {
+                    var hindi=[];
+                }
+                if(languages.includes("english")) {
+                    var english=[];
+                }
+                if(languages.includes("gujarati")) {
+                    var gujarati=[];
+                }
+                parent.forEach((element)=>{
+                    if(element.name==="hindi[]" && element.checked) {
+                        hindi.push(element.value)
+                    }
+                    if(element.name==="english[]" && element.checked) {
+                        english.push(element.value)
+                    }
+                    if(element.name==="gujarati[]" && element.checked) {
+                        gujarati.push(element.value)
+                    }
+                })
+                let newdata={}
+                data.languages=languages;
+                newdata.languages=languages
+                if(hindi) {
+                    data.hindi=hindi
+                    newdata.hindi=hindi
+                }
+                if(english) {
+                    data.english=english
+                    newdata.english=english
+                }
+                if(gujarati) {
+                    data.gujarati=gujarati
+                    newdata.gujarati=gujarati
+                }
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("knownLanguages", JSON.stringify(newdata))
+                }
+            }
+
+            const getLanguageData = (validate) => {
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*")
+                let knownLanguages=(JSON.parse(localStorage.getItem("knownLanguages")))
+                knownLanguages.languages.forEach((element)=>{
+                    document.getElementById(element).checked=true;
+                    knownLanguages[element].forEach((element1)=>{
+                        document.getElementById(`${element}${element1}`).checked=true
+                    })
+                })
+            }
+
+            const storeTechnologyData = (parent)=>{
+                let tech_name=[];
+                parent.forEach((element)=>{
+                    if(element.name==="tech_name[]" && element.checked) {
+                        tech_name.push(element.value)
+                    }
+                })
+               let php,mysql,laravel,oracle;
+                parent.forEach((element)=>{
+                    if(element.name==="php" && element.checked) {
+                         php=element.value;
+                    }
+                    if(element.name==="mysql" && element.checked) {
+                         mysql=element.value;
+                    }
+                    if(element.name==="laravel" && element.checked) {
+                         laravel=element.value;
+                    }
+                    if(element.name==="oracle" && element.checked) {
+                         oracle=element.value;
+                    }
+                })
+                let newdata = {};
+                newdata.tech_name=tech_name
+                data.tech_name=tech_name;
+                if(php) {
+                    newdata.php=php;
+                    data.php=php
+                }
+                if(mysql) {
+                    newdata.mysql=mysql;
+                    data.mysql=mysql;
+                }
+                if(laravel) {
+                    newdata.laravel=laravel;
+                    data.laravel=laravel;
+                }
+                if(oracle) {
+                    newdata.oracle=oracle;
+                    data.oracle=oracle;
+                }
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("knownTechnologies", JSON.stringify(newdata))
+                }
+            }
+
+            const getTechnologyData = (validate) =>{
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*");
+                let knownTechnologies = JSON.parse(localStorage.getItem("knownTechnologies"));
+                knownTechnologies.tech_name.forEach((element)=>{
+                    document.getElementById(`${element}`).checked=true;
+                    document.getElementById(`${element}_${knownTechnologies[element]}`).checked=true
+                })
+            }
+
+            const storeReferenceData = (parent)=>{
+                let reference_contact_name=[], reference_contact_number=[], reference_contact_relation=[];
+                parent.forEach((element)=>{
+                    if(element.name=="reference_contact_name[]") {
+                        reference_contact_name.push(element.value)
+                    }
+                    if(element.name=="reference_contact_number[]") {
+                        reference_contact_number.push(element.value)
+                    }
+                    if(element.name=="reference_contact_relation[]") {
+                        reference_contact_relation.push(element.value)
+                    }
+                })
+                data.reference_contact_name=reference_contact_name, data.reference_contact_number=reference_contact_number, data.reference_contact_relation=reference_contact_relation;
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("referenceContact", JSON.stringify({reference_contact_name, reference_contact_number, reference_contact_relation}));
+                }
+            }
+
+            const getReferenceData = (validate) => {
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*");
+                let referenceData=JSON.parse(localStorage.getItem("referenceContact"));
+                let i=1;
+                referenceData.reference_contact_name.forEach((element)=>{
+                    document.getElementById(`reference_contact${i}_name`).value=element;
+                    document.getElementById(`reference_contact${i}_number`).value=referenceData.reference_contact_number[i-1];
+                    document.getElementById(`reference_contact${i}_relation`).value=referenceData.reference_contact_relation[i-1];
+                    i++;
+                })
+            }
+
+            const storePreferenceData = (parent)=>{
+                var newdata={};
+                let prefered_location=[];
+                parent.forEach((element)=>{
+                        if(element.tagName=="OPTION" && element.selected && (element.id=="Gujarat" || element.id=="Maharashtra" || element.id=="Rajasthan" || element.id=="MadhyaPradesh" ||element.id=="UttarPradesh")) {
+                            prefered_location.push(element.value)
+                        }
+                        if(element.name==="department") {
+                            newdata.department=element.value
+                        }
+                    
+                    if(element.name=="notice_period") {
+                        data[element.name]=element.value;
+                        newdata[element.name]=element.value;
+                    }
+                    if(element.name=="current_ctc") {
+                        data[element.name]=element.value;
+                        newdata[element.name]=element.value;
+                    }
+                    if(element.name=="expected_ctc") {
+                        data[element.name]=element.value;
+                        newdata[element.name]=element.value;
+                    }
+                })
+                data.prefered_location=prefered_location;
+                newdata.prefered_location=prefered_location;
+                if(!basicDetailsResult[0].application_id) {
+                    localStorage.setItem("preferences", JSON.stringify(newdata));
+                }
+            }
+            
+            const getPreferenceData = (validate) => {
+                let parent = document.getElementsByClassName(validate)[0].querySelectorAll("*");
+                let preferences = JSON.parse(localStorage.getItem("preferences"))
+                preferences.prefered_location.forEach((element)=>{
+                    document.getElementById(element).selected=true;
+                })
+                document.getElementById("department").value=preferences.department;
+                document.getElementById("notice_period").value=preferences.notice_period;
+                document.getElementById("current_ctc").value=preferences.current_ctc;
+                document.getElementById("expected_ctc").value=preferences.expected_ctc;
+            }
+            if(!basicDetailsResult[0].application_id) {
+            getBasicData("basicDetail")
+            getEducationData("educationDetail")
+            getWorkExperienceData("workExperience")
+            getLanguageData("knownLanguages")
+            getTechnologyData("knownTechnologies");
+            getReferenceData("referenceContacts")
+            getPreferenceData("preferences")
+            }
+        </script>
+</body>
+</form>
+</html>

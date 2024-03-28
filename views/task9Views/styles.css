@@ -1,0 +1,75 @@
+.error {
+  display: none;
+  color: red;
+}
+
+.addfield {
+  background-color: black;
+  color: white;
+  padding: 10px 10px;
+  transition: 0.3s ease;
+}
+
+.addfield:hover {
+  cursor: pointer;
+  transform: scale(2.5);
+}
+
+.select {
+  margin-bottom: 20px;
+}
+
+tr,
+td,
+th {
+  margin: 0 auto;
+  border: 2px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.next-button {
+  background-color: green;
+  border: 1px solid green;
+  border-radius: 6px;
+  color: white;
+  padding: 10px 20px;
+}
+
+.prev-button {
+  background-color: grey;
+  border: 1px solid grey;
+  border-radius: 6px;
+  color: white;
+  padding: 10px 20px;
+}
+
+.prev-button:hover {
+  cursor: pointer;
+}
+.next-button:hover {
+  cursor: pointer;
+}
+
+fieldset {
+  margin-bottom: 20px;
+}
+
+.add-user-button {
+  border: 1px solid darkcyan;
+  padding: 10px 10px;
+  max-width: 80px;
+  margin-left: 550px;
+  margin-top: 50px;
+  transition: 0.3s ease;
+  color: darkcyan;
+}
+
+.add-user-button:hover {
+  cursor: pointer;
+  background-color: darkcyan;
+  color: white;
+}
