@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/task10Views/styles.css" />
+  </head>
+  <body>
+    <h1 align="center">Vansh Gandhi - 24DEV071</h1>
+    <p>
+      <input type="text" placeholder="search" name="search" id="search" onchange="apiData()" />
+      <button>Search</button>
+    </p>
+    <script>
+      let jsonData = async () => {
+        let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        let json = await response.json();
+        return json;
+      };
+      let apiData = async () => {
+        if (document.getElementsByTagName("table").length > 0) {
+          document.getElementById("postsTable").remove();
+        }
+        if (document.getElementById("pagination")) {
+          document.getElementById("pagination").remove();
+        }
+
+        let json = await jsonData();
+        let inputSearch = document.getElementById("search").value;
+
+        let arr = Object.keys(json[0]);
+        const searchParams = new URLSearchParams(window.location.search);
+        const pageNo = searchParams.get("page");
+
+        const inputQuery = searchParams.get("search");
+
+        let recordsPerPage = 10;
+        let startIndex = recordsPerPage * (pageNo - 1);
+        let endIndex = pageNo * recordsPerPage;
+
+        let data, input, lastpage;
+        let i = -1;
+        if (inputSearch !== "" || inputQuery !== "none") {
+          if (inputSearch !== "") {
+            input = inputSearch;
+          } else {
+            input = inputQuery;
+          }
+          data1 = json.filter((element) => {
+            return (
+              element.userId == input ||
+              element.id == input ||
+              element.title.includes(input) ||
+              element.body.includes(input)
+            );
+          });
+          lastpage = Math.ceil(data1.length / recordsPerPage);
+          data = data1.filter((element) => {
+            i++;
+            return i >= startIndex && i < endIndex;
+          });
+        } else {
+          input = "none";
+          lastpage = Math.ceil(json.length / recordsPerPage);
+          data = json.filter((element) => {
+            i++;
+            return i >= startIndex && i < endIndex;
+          });
+        }
+
+        const tbl = document.createElement("table");
+        tbl.setAttribute("id", "postsTable");
+        const tblBody = document.createElement("tbody");
+        const row = document.createElement("tr");
+        arr.forEach((key) => {
+          const cell = document.createElement("th");
+          const cellText = document.createTextNode(`${key}`);
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        });
+        const cell = document.createElement("td");
+        const cellText = document.createTextNode("View Details");
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+        tblBody.appendChild(row);
+        tbl.appendChild(tblBody);
+        arr.push("viewDetails");
+        document.body.appendChild(tbl);
+        data.forEach((value) => {
+          const row = document.createElement("tr");
+          arr.forEach((key) => {
+            const cell = document.createElement("td");
+            if (key === "viewDetails") {
+              const anchor = document.createElement("a");
+              const anchorText = document.createTextNode("View Details");
+              anchor.setAttribute("onclick", `postDetails(${value.id})`);
+              anchor.appendChild(anchorText);
+              cell.appendChild(anchor);
+            } else {
+              const cellText = document.createTextNode(value[key]);
+              cell.appendChild(cellText);
+            }
+            row.appendChild(cell);
+          });
+
+          tblBody.appendChild(row);
+        });
+        tbl.appendChild(tblBody);
+        document.body.appendChild(tbl);
+
+        createPagination(input, pageNo, lastpage);
+      };
+      apiData();
+
+      const startButton = (search) => {
+        window.location.href = `/task10/posts?page=1&search=${search}`;
+      };
+
+      const prevButton = (pageNo, search) => {
+        if (pageNo > 1) {
+          window.location.href = `/task10/posts?page=${pageNo - 1}&search=${search}`;
+        }
+      };
+
+      const nextButton = (lastpage, pageNo, search) => {
+        if (pageNo < lastpage) {
+          window.location.href = `/task10/posts?page=${pageNo + 1}&search=${search}`;
+        }
+      };
+
+      const endButton = (lastpage, search) => {
+        window.location.href = `/task10/posts?page=${lastpage}&search=${search}`;
+      };
+
+      const postDetails = (id) => {
+        window.location.href = `/task10/post-details/${id}`;
+      };
+
+      const createPagination = (input, pageNo, lastpage) => {
+        const div = document.createElement("div");
+        div.setAttribute("id", "pagination");
+        const startButton = document.createElement("button");
+        const startButtonText = document.createTextNode("<<");
+        startButton.setAttribute("onclick", `startButton("${input}")`);
+        startButton.appendChild(startButtonText);
+        div.appendChild(startButton);
+        const prevButton = document.createElement("button");
+        const prevButtonText = document.createTextNode("<");
+        prevButton.setAttribute("onclick", `prevButton(${pageNo},"${input}")`);
+        prevButton.appendChild(prevButtonText);
+        div.appendChild(prevButton);
+        const pageButton = document.createElement("button");
+        const pageButtonText = document.createTextNode(`${pageNo}`);
+        pageButton.appendChild(pageButtonText);
+        div.appendChild(pageButton);
+        const nextButton = document.createElement("button");
+        const nextButtonText = document.createTextNode(">");
+        nextButton.setAttribute("onclick", `nextButton(${lastpage},${pageNo}, "${input}")`);
+        nextButton.appendChild(nextButtonText);
+        div.appendChild(nextButton);
+        const endButton = document.createElement("button");
+        const endButtonText = document.createTextNode(">>");
+        endButton.setAttribute("onclick", `endButton(${lastpage},"${input}")`);
+        endButton.appendChild(endButtonText);
+        div.appendChild(endButton);
+        document.body.appendChild(div);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/task10Views/styles.css" />
+  </head>
+  <body>
+    <script>
+      let apiData = async () => {
+        const path = window.location.pathname;
+        const id = path.split("/")[3];
+
+        if (id > 100) {
+          let p = document.createElement("p");
+          let pText = document.createTextNode("No post found");
+          p.appendChild(pText);
+          document.body.appendChild(p);
+        } else {
+          let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+          let data = await response.json();
+          let arr = Object.keys(data);
+          const tbl = document.createElement("table");
+          const tblBody = document.createElement("tbody");
+          const row = document.createElement("tr");
+          arr.forEach((key) => {
+            const cell = document.createElement("td");
+            const cellText = document.createTextNode(`${key}`);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+          });
+          tblBody.appendChild(row);
+          tbl.appendChild(tblBody);
+          const row1 = document.createElement("tr");
+          const cell1 = document.createElement("td");
+          const cellText1 = document.createTextNode(data[arr[0]]);
+          cell1.appendChild(cellText1);
+          row1.appendChild(cell1);
+
+          const cell2 = document.createElement("td");
+          const cellText2 = document.createTextNode(data[arr[1]]);
+          cell2.appendChild(cellText2);
+          row1.appendChild(cell2);
+
+          const cell3 = document.createElement("td");
+          const cellText3 = document.createTextNode(data[arr[2]]);
+          cell3.appendChild(cellText3);
+          row1.appendChild(cell3);
+
+          const cell4 = document.createElement("td");
+          const cellText4 = document.createTextNode(data[arr[3]]);
+          cell4.appendChild(cellText4);
+          row1.appendChild(cell4);
+
+          tblBody.appendChild(row1);
+          tbl.appendChild(tblBody);
+
+          document.body.appendChild(tbl);
+
+          let button = document.createElement("button");
+          let buttonText = document.createTextNode("View All Comments");
+          button.setAttribute("class", "comment");
+          button.setAttribute("id", "showComment");
+          button.setAttribute("onclick", `viewAllComments(${data.id})`);
+          button.appendChild(buttonText);
+          document.body.appendChild(button);
+
+          let button1 = document.createElement("button");
+          let buttonText1 = document.createTextNode("Hide All Comments");
+          button1.setAttribute("class", "comment");
+          button1.setAttribute("id", "hideComment");
+          button1.setAttribute("onclick", `hideAllComments()`);
+          button1.appendChild(buttonText1);
+          document.body.appendChild(button1);
+        }
+      };
+      apiData();
+
+      const viewAllComments = async (id) => {
+        let commentResponse = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${id}/comments`
+        );
+        let commentData = await commentResponse.json();
+        if (document.getElementsByTagName("table").length === 1) {
+          document.getElementById("showComment").style.display = "none";
+          document.getElementById("hideComment").style.display = "block";
+
+          const tbl1 = document.createElement("table");
+          tbl1.setAttribute("id", "commentTable");
+          const tblBody1 = document.createElement("tbody");
+          const row2 = document.createElement("tr");
+          const cell5 = document.createElement("th");
+          const cellText5 = document.createTextNode("Name");
+          cell5.appendChild(cellText5);
+          row2.appendChild(cell5);
+
+          const cell6 = document.createElement("th");
+          const cellText6 = document.createTextNode("Comment");
+          cell6.appendChild(cellText6);
+          row2.appendChild(cell6);
+          tblBody1.appendChild(row2);
+          commentData.forEach((element) => {
+            const row3 = document.createElement("tr");
+            const cell7 = document.createElement("td");
+            const cellText7 = document.createTextNode(element.name);
+            cell7.appendChild(cellText7);
+            row3.appendChild(cell7);
+            const cell8 = document.createElement("td");
+            const cellText8 = document.createTextNode(element.body);
+            cell8.appendChild(cellText8);
+            row3.appendChild(cell8);
+            tblBody1.appendChild(row3);
+          });
+          tbl1.appendChild(tblBody1);
+          document.body.appendChild(tbl1);
+        }
+      };
+
+      const hideAllComments = () => {
+        document.getElementById("hideComment").style.display = "none";
+        document.getElementById("showComment").style.display = "block";
+        document.getElementById("commentTable").remove();
+      };
+    </script>
+  </body>
+</html>

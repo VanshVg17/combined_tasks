@@ -1,0 +1,40 @@
+tr,
+td,
+th {
+  margin: 0 auto;
+  border: 2px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+a {
+  text-decoration: underline;
+  color: purple;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.comment {
+  /* border: 1px solid; */
+  margin-left: 600px;
+  margin-top: 50px;
+}
+
+#hideComment {
+  display: none;
+}
+
+#commentsDiv {
+  display: block;
+}
+
+#pagination {
+  max-width: 130px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
