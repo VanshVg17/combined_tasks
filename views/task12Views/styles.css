@@ -1,0 +1,15 @@
+tr,
+td,
+th {
+  margin: 0 auto;
+  border: 2px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+table {
+  margin-top: 40px;
+}

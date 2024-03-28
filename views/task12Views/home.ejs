@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./task12Views/styles.css">
+  </head>
+  <body>
+    <form action="/task12" method="post">
+      <p style="margin-bottom: 50px;">
+        <input type="text" autofocus name="field_name" placeholder="Enter a field name" />
+        <button>Search</button>
+      </p>
+      <% if (data!==false) {%>
+        <span><%=data[0].select_name%>: </span>
+           <% if(data[0].select_type === "dropdown") {%>
+                <% if(data[0].multi_value==="yes") {%>
+                        <select multiple>
+                    <%} else {%>
+                        <select>
+                        <%}%>
+                        <% for(let i=0; i<data.length; i++) {%>
+                        <option value="<%=data[i].option_value%>"><%=data[i].option_label%></option>
+                            <%}%>
+                        </select>
+            <%} else if(data[0].select_name==="technology") {%>
+                <% for(let i=0; i<data.length; i++) {%>
+                    <p><input type="<%=data[i].select_type%>"> <%=data[i].option_label%> <input type="radio" name="<%=data[i].option_label%>" value="beginner"> Beginner <input type="radio" name="<%=data[i].option_label%>" value="mideator">Mideator <input type="radio" name="<%=data[i].option_label%>" value="expert"> Expert </p>
+                    <%}%>
+                <%} else if(data[0].select_name==="language") {%>
+                    <% for(let i=0; i<data.length; i++) {%>
+                        <p><input type="<%=data[i].select_type%>"> <%=data[i].option_label%> <input type="<%=data[i].select_type%>" name="<%=data[i].option_label%>" value="read"> Read <input type="<%=data[i].select_type%>" name="<%=data[i].option_label%>" value="write"> Write <input type="<%=data[i].select_type%>" name="<%=data[i].option_label%>" value="speak"> Speak </p>
+                    <%}%>
+            <%} else {%>
+                <% for(let i=0; i<data.length; i++) {%>
+                <input type="<%=data[i].select_type%>" value="<%=data[i].option_value%>"> <%=data[i].option_label%>
+                    <%}%>
+                <%}%>
+        <%}%>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Input</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Gender</td>
+                <td>Gender Radio Buttons</td>
+            </tr>
+            <tr>
+                <td>Relationship</td>
+                <td>Relationship dropdown</td>
+            </tr>
+            <tr>
+                <td>language</td>
+                <td>Languages Checkbox</td>
+            </tr>
+            <tr>
+                <td>Technology</td>
+                <td>Technology Checkbox</td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td>Location dropdown</td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>Department dropdown</td>
+            </tr>
+            
+        </tbody>
+    </table>
+  </body>
+</html>
