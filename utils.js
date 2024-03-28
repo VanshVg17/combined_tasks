@@ -110,4 +110,13 @@ let getQuery = (fieldIndex, fieldQuery) => {
   return query;
 };
 
-module.exports = { generateJwtToken, getIndex, getString, getQuery };
+const convertToNull = (data) => {
+  Object.keys(data).forEach((key) => {
+    if (data[key] === "") {
+      data[key] = null;
+    }
+  });
+  return data;
+};
+
+module.exports = { generateJwtToken, getIndex, getString, getQuery, convertToNull };
