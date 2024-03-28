@@ -21,5 +21,10 @@ router.get(
   controller.dashboard
 );
 router.post("/logout", controller.logout);
+router.get(
+  "*",
+  passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
+  controller.dashboard
+);
 
 module.exports = router;
