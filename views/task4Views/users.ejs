@@ -126,15 +126,15 @@
       <% } %> <% } %>
 
       <button><%=pageno%></button>
-      <% if(pageno==5) { %>
+      <% if(pageno==lastpage) { %>
       <button disabled>></button>
       <button disabled>>></button>
       <% } else { %> <% if(sort===false) { %>
       <a href="/task4/users/<%=pageno+1%>"><button>></button></a>
-      <a href="/task4/users/5"> <button>>></button></a>
+      <a href="/task4/users/<%=lastpage%>"> <button>>></button></a>
       <%} else {%>
       <a href="/task4/users/<%=pageno+1%>/sortby/<%=sort%>/<%=order%>"><button>></button></a>
-      <a href="/task4/users/5/sortby/<%=sort%>/<%=order%>"> <button>>></button></a>
+      <a href="/task4/users/<%=lastpage%>/sortby/<%=sort%>/<%=order%>"> <button>>></button></a>
       <% } %> <% } %>
     </div>
     <p class="total">Total Records: <%=total%></p>
