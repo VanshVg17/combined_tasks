@@ -24,6 +24,16 @@ const search = async (req, res) => {
   try {
     const { search } = req.body;
 
+    if (
+      !search.includes("_") &&
+      !search.includes("^") &&
+      !search.includes("$") &&
+      !search.includes("}") &&
+      !search.includes("{") &&
+      !search.includes(":")
+    ) {
+      return res.send("Invalid Input");
+    }
     let fieldIndex = {},
       fieldQuery = {};
     let studentIdIndex = utilFunction.getIndex("_", search);

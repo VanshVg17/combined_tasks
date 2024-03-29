@@ -234,7 +234,7 @@ CREATE TABLE attendance_27_feb (
     attendance varchar(10)
 );
 
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(1, "2023-12-1", "Present");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(1, "2023-12-1", "Absent");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(2, "2023-12-1", "Absent");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(3, "2023-12-1", "Absent");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(4, "2023-12-1", "Present");
@@ -246,23 +246,23 @@ INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(9
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(10, "2023-12-1", "Present");
 
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(1, "2024-1-1", "Present");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(2, "2024-1-1", "Absent");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(3, "2024-1-1", "Absent");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(2, "2024-1-1", "Present");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(3, "2024-1-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(4, "2024-1-1", "Present");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(5, "2024-1-1", "Present");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(5, "2024-1-1", "Absent");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(6, "2024-1-1", "Absent");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(7, "2024-1-1", "Absent");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(7, "2024-1-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(8, "2024-1-1", "Present");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(9, "2024-1-1", "Absent");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(9, "2024-1-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(10, "2024-1-1", "Present");
 
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(1, "2024-2-1", "Present");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(2, "2024-2-1", "Absent");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(3, "2024-2-1", "Absent");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(2, "2024-2-1", "Present");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(3, "2024-2-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(4, "2024-2-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(5, "2024-2-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(6, "2024-2-1", "Absent");
-INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(7, "2024-2-1", "Absent");
+INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(7, "2024-2-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(8, "2024-2-1", "Present");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(9, "2024-2-1", "Absent");
 INSERT INTO attendance_27_feb (student_id, attendance_date, attendance) VALUES(10, "2024-2-1", "Present");
@@ -296,9 +296,39 @@ CREATE TABLE result_27_feb (
 INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,1,1,27,0);
 INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,1,2,12,15);
 INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,1,3,42,3);
-INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,1,1,25,14);
-INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,1,2,23,8);
-INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,1,3,6,8);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,2,1,24,12);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,2,2,22,19);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,2,3,46,16);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,3,1,27,16);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,3,2,26,17);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,3,3,42,13);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,4,1,24,12);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,4,2,22,19);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,4,3,46,16);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,5,1,21,12);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,5,2,25,14);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,5,3,40,25);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,6,1,21,19);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,6,2,28,12);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(1,6,3,50,20);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,1,1,27,20);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,1,2,18,19);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,1,3,42,20);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,2,1,24,12);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,2,2,25,13);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,2,3,32,11);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,3,1,27,23);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,3,2,22,17);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,3,3,43,13);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,4,1,15,21);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,4,2,29,12);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,4,3,50,21);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,5,1,27,16);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,5,2,22,11);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,5,3,33,20);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,6,1,21,19);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,6,2,18,22);
+INSERT INTO result_27_feb (student_id, subject_id, exam_id, theory, practical) VALUES(2,6,3,40,10);
 
 create table basic_details (
 	application_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
