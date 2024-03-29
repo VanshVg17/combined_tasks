@@ -13,17 +13,6 @@ const showData = async (req, res) => {
       res.redirect("/task5/students?page=1&month=december-2023");
     }
 
-    page = Number(req.query.page);
-
-    let records_per_page = 10;
-    let start = page * records_per_page - records_per_page;
-
-    if (page > 20) {
-      return res.status(404).json({
-        message: "Page not found",
-      });
-    }
-
     let arr = req.query.month.split("-");
     month = arr[0];
     year = arr[1];
@@ -38,6 +27,21 @@ const showData = async (req, res) => {
     if (month === "february") {
       newMonth = 2;
     }
+    let records_per_page = 10;
+
+    let query1 = `SELECT student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name, COUNT(attendance_27_feb.attendance) AS attendance, ROUND(COUNT(attendance_27_feb.attendance)*100/31,2) AS Percentage FROM student_master_27_feb JOIN attendance_27_feb ON student_master_27_feb.student_id=attendance_27_feb.student_id WHERE attendance_27_feb.attendance="Present" AND month(attendance_27_feb.attendance_date)=${newMonth} AND year(attendance_27_feb.attendance_date)=${year} GROUP BY student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name ORDER BY student_master_27_feb.student_id`;
+    let result1 = await promisedQuery(query1);
+
+    let lastpage = Math.ceil(result1.length / records_per_page);
+    page = Number(req.query.page);
+
+    let start = page * records_per_page - records_per_page;
+
+    if (page > 20) {
+      return res.status(404).json({
+        message: "Page not found",
+      });
+    }
 
     let query = `SELECT student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name, COUNT(attendance_27_feb.attendance) AS attendance, ROUND(COUNT(attendance_27_feb.attendance)*100/31,2) AS Percentage FROM student_master_27_feb JOIN attendance_27_feb ON student_master_27_feb.student_id=attendance_27_feb.student_id WHERE attendance_27_feb.attendance="Present" AND month(attendance_27_feb.attendance_date)=${newMonth} AND year(attendance_27_feb.attendance_date)=${year} GROUP BY student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name ORDER BY student_master_27_feb.student_id LIMIT ${start},${records_per_page};`;
 
@@ -45,10 +49,7 @@ const showData = async (req, res) => {
     if (data.length === 0) {
       return res.render("./task5Views/errorPage.ejs", { message: "Student Not Found" });
     }
-    let query1 = `SELECT student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name, COUNT(attendance_27_feb.attendance) AS attendance, ROUND(COUNT(attendance_27_feb.attendance)*100/31,2) AS Percentage FROM student_master_27_feb JOIN attendance_27_feb ON student_master_27_feb.student_id=attendance_27_feb.student_id WHERE attendance_27_feb.attendance="Present" AND month(attendance_27_feb.attendance_date)=${newMonth} AND year(attendance_27_feb.attendance_date)=${year} GROUP BY student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name ORDER BY student_master_27_feb.student_id`;
-    let result1 = await promisedQuery(query1);
 
-    let lastpage = Math.floor(result1.length / records_per_page);
     res.render("./task5Views/users.ejs", {
       data: data,
       month: req.query.month,
@@ -69,14 +70,19 @@ const resultData = async (req, res) => {
     }
     page = Number(req.query.page);
 
-    if (page > 20) {
+    let records_per_page = 10;
+    let start = page * records_per_page - records_per_page;
+
+    let totalQuery = `SELECT student_master_27_feb.student_id,first_name, last_name, email_id, SUM(result_27_feb.theory) AS theory, SUM(result_27_feb.practical) AS practical, SUM(result_27_feb.theory + result_27_feb.practical) AS total FROM student_master_27_feb JOIN result_27_feb ON student_master_27_feb.student_id = result_27_feb.student_id WHERE exam_id = 1 GROUP BY student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name`;
+    let totalResult = await promisedQuery(totalQuery);
+
+    let lastpage = Math.ceil(totalResult.length / records_per_page);
+
+    if (page > lastpage) {
       return res.status(404).json({
         message: "Page not found",
       });
     }
-
-    let records_per_page = 10;
-    let start = page * records_per_page - records_per_page;
 
     let query1 = `SELECT student_master_27_feb.student_id,first_name, last_name, email_id, SUM(result_27_feb.theory) AS theory, SUM(result_27_feb.practical) AS practical, SUM(result_27_feb.theory + result_27_feb.practical) AS total FROM student_master_27_feb JOIN result_27_feb ON student_master_27_feb.student_id = result_27_feb.student_id WHERE exam_id = 1 GROUP BY student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name LIMIT ${start},${records_per_page};`;
     let terminal = await promisedQuery(query1);
@@ -97,7 +103,6 @@ const resultData = async (req, res) => {
       return res.render("./task5Views/errorPage.ejs", { message: "Result Not Found" });
     }
 
-    let lastpage = Math.floor(result.length / records_per_page);
     res.render("./task5Views/result.ejs", {
       terminal: terminal,
       prelim: prelim,
@@ -125,7 +130,7 @@ const showOneResult = async (req, res) => {
     if (subject_result.length === 0) {
       return res.render("./task5Views/errorPage.ejs", { message: "Student Not Found" });
     }
-
+    console.log(subject_result);
     res.render("./task5Views/fullResult.ejs", {
       student_details: student_details,
       subject_result: subject_result,
