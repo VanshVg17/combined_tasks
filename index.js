@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const cookieParser = require("cookie-parser");
 
 require("./config/dbConfig");
 const task16Routes = require("./routes/task16Routes");
@@ -24,6 +25,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/views"));
 
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
