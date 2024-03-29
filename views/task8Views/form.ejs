@@ -69,18 +69,22 @@
             <legend>
                 <h2>Education Details</h2>
             </legend>
+            <span class="addfield" onclick="addEducationField()">+</span>
+            <span class="addfield" onclick="removeEducationField()">-</span>
+            <br>
+        <br>
+        <div id="education-parent">
             <% if(!basicDetailsResult[0].first_name) {%>
-                <span class="addfield" onclick="addEducationField()">+</span>
-                <span class="addfield" onclick="removeEducationField()">-</span>
-                <%}%>
-            <br>
-            <br>
-            <div id="education-parent">
+           
                 <div id="education-child1" class="select">
                     <span>Course</span> <select name="course[]" id="course1">
                         <option name="SSC">SSC</option>
                         <option name="HSC">HSC</option>
                         <option name="B.Tech">B.Tech</option>
+                        <option name="B.Tech">BCA</option>
+                        <option name="B.Tech">MCA</option>
+                        <option name="B.Tech">MBA</option>
+                        <option name="B.Tech">M.Tech</option>
                     </select>
                    
                     <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[0].course_passing_year){%> value='<%=educationDetailsResult[0].course_passing_year.getFullYear()%>-<%=educationDetailsResult[0].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[0].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year1"> 
@@ -93,6 +97,10 @@
                         <option name="SSC">SSC</option>
                         <option name="HSC">HSC</option>
                         <option name="B.Tech">B.Tech</option>
+                        <option name="B.Tech">BCA</option>
+                        <option name="B.Tech">MCA</option>
+                        <option name="B.Tech">MBA</option>
+                        <option name="B.Tech">M.Tech</option>
                     </select>
                     <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[1].course_passing_year){%> value='<%=educationDetailsResult[1].course_passing_year.getFullYear()%>-<%=educationDetailsResult[1].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[1].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year2"> 
                     <p name="course_passing_year_error" id="course_passing_year2_error" class="error">Please Enter Your course passing year correctly</p>
@@ -104,13 +112,38 @@
                         <option name="SSC">SSC</option>
                         <option name="HSC">HSC</option>
                         <option name="B.Tech">B.Tech</option>
+                        <option name="B.Tech">BCA</option>
+                        <option name="B.Tech">MCA</option>
+                        <option name="B.Tech">MBA</option>
+                        <option name="B.Tech">M.Tech</option>
                     </select>
                     <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[2].course_passing_year){%> value='<%=educationDetailsResult[2].course_passing_year.getFullYear()%>-<%=educationDetailsResult[2].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[2].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year3"> 
                     <p name="course_passing_year_error" id="course_passing_year3_error" class="error">Please Enter Your course passing year correctly</p>
                       <span>Percentage</span> <input type="text" name="course_percentage[]" value="<%=educationDetailsResult[2].course_percentage%>" id="course_percentage3">
                     <p name="course_percentage_error" id="course_percentage3_error" class="error">Please Enter Your course percentage correctly</p>
                 </div>
+            <%} else {%>
+                <% for(let i=0; i<educationDetailsResult.length; i++) {%>
+                    <div id="education-child<%=i+1%>" class="select">
+                        <span>Course</span> <select name="course[]" id="course<%=i+1%>">
+                            <option name="SSC">SSC</option>
+                            <option name="HSC">HSC</option>
+                            <option name="B.Tech">B.Tech</option>
+                            <option name="B.Tech">BCA</option>
+                            <option name="B.Tech">MCA</option>
+                            <option name="B.Tech">MBA</option>
+                            <option name="B.Tech">M.Tech</option>
+                        </select>
+                       
+                        <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[i].course_passing_year){%> value='<%=educationDetailsResult[i].course_passing_year.getFullYear()%>-<%=educationDetailsResult[i].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[i].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year<%=i+1%>"> 
+                        <p name="course_passing_year_error" id="course_passing_year<%=i+1%>_error" class="error">Please Enter Your course passing year correctly</p>
+                          <span>Percentage</span> <input type="text" name="course_percentage[]" value="<%=educationDetailsResult[i].course_percentage%>" id="course_percentage<%=i+1%>">
+                        <p name="course_percentage_error" id="course_percentage<%=i+1%>_error" class="error">Please Enter Your course percentage correctly</p>
+                    </div>
+                    <%}%>
+                <%}%>
         </div>
+            
         </fieldset>
 
         <fieldset>
@@ -118,14 +151,12 @@
                 <h2>Work Experience</h2>
             </legend>
 
-
+            <span class="addfield" onclick="addCompanyField()">+</span>
+            <span class="addfield" onclick="removeCompanyField()">-</span>
+            <br>
+        <br>
+        <div id="company-parent">
             <% if(!basicDetailsResult[0].first_name) {%>
-                <span class="addfield" onclick="addEducationField()">+</span>
-                <span class="addfield" onclick="removeEducationField()">-</span>
-                <%}%>
-            <br>
-            <br>
-            <div id="company-parent">
                 <div id="company1">
                     <span>Company Name</span> <input type="text" name="company_name[]" value="<%=workExperienceResult[0].company_name%>" id="company1_name">
                     <p id="company1_name_error" class="error">Please Enter Your 1st company name</p>
@@ -152,7 +183,25 @@
                     <br>
                     <br>
                 </div>
+                <%} else {%>
+                    <% for(let i=0; i<workExperienceResult.length; i++) {%>
+                        <div id="company<%=i+1%>">
+                            <span>Company Name</span> <input type="text" name="company_name[]" value="<%=workExperienceResult[i].company_name%>" id="company<%=i+1%>_name">
+                            <p id="company<%=i+1%>_name_error" class="error">Please Enter Your company name</p>
+                            <span>Designation</span>  <input type="text" name="company_designation[]" value="<%=workExperienceResult[i].company_designation%>" id="company<%=i+1%>_designation">
+                            <p id="company<%=i+1%>_designation_error" class="error">Please Enter Your company designation</p>
+                            <span>From</span> <input type="text" placeholder="YYYY-MM-DD" name="company_joining_date[]" <% if(workExperienceResult[i].company_joining_date){%> value='<%=workExperienceResult[i].company_joining_date.getFullYear()%>-<%=workExperienceResult[i].company_joining_date.getMonth()+1%>-<%=workExperienceResult[i].company_joining_date.getDate()%>'<%}%> id="company<%=i+1%>_joining_date">
+                            <p id="company<%=i+1%>_joining_date_error" class="error">Please Enter Your company joining date correctly</p>
+                            <span>To</span> <input
+                                type="text" placeholder="YYYY-MM-DD" name="company_leaving_date[]" <% if(workExperienceResult[i].company_leaving_date){%>value='<%=workExperienceResult[i].company_leaving_date.getFullYear()%>-<%=workExperienceResult[i].company_leaving_date.getMonth()+1%>-<%=workExperienceResult[i].company_leaving_date.getDate()%>'<%}%> id="company<%=i+1%>_leaving_date">
+                            <p id="company<%=i+1%>_leaving_date_error" class="error">Please Enter Your company leaving date correctly</p>
+                            <br>
+                            <br>
+                        </div>
+                        <%}%>
+                    <%}%>
             </div>
+
         </fieldset>
 
 
@@ -234,22 +283,14 @@
             <legend>
                 <h2>Reference Contact</h2>
             </legend>
-            <% if(!basicDetailsResult[0].first_name) {%>
-                <span class="addfield" onclick="addReferenceField()">+</span>
-                <span class="addfield" onclick="removeReferenceField()">-</span>
-                <%}%>
-            
-            <br>
-            <br>
-
-            <div id="reference-parent">
-                <div id="reference_contact1">
-                    <span>Name</span> <input type="text" name="reference_contact_name[]" value="<%=referenceContactsResult[0].reference_contact_name%>" id="reference_contact1_name">
-                    <span>Number</span> <input type="text" name="reference_contact_number[]" value="<%=referenceContactsResult[0].reference_contact_number%>" id="reference_contact1_number"> <span>Relation</span> <input type="text" name="reference_contact_relation[]" value="<%=referenceContactsResult[0].reference_contact_relation%>" id="reference_contact1_relation">
-                    <p id="reference_contact1_error" class="error">Please Enter all details correctly</p>
-                    <br> <br>
+                <div id="reference-parent">
+                    <div id="reference_contact1">
+                        <span>Name</span> <input type="text" name="reference_contact_name[]" value="<%=referenceContactsResult[0].reference_contact_name%>" id="reference_contact1_name">
+                        <span>Number</span> <input type="text" name="reference_contact_number[]" value="<%=referenceContactsResult[0].reference_contact_number%>" id="reference_contact1_number"> <span>Relation</span> <input type="text" name="reference_contact_relation[]" value="<%=referenceContactsResult[0].reference_contact_relation%>" id="reference_contact1_relation">
+                        <p id="reference_contact1_error" class="error">Please Enter all details correctly</p>
+                        <br> <br>
+                    </div>
                 </div>
-            </div>
         </fieldset>
 
        <fieldset>
@@ -521,16 +562,13 @@
                 document.getElementById("relationship_status").value=`<%=basicDetailsResult[0].relationship_status%>`
             }
 
-            if(`<%=educationDetailsResult[0].course%>`){
-                document.getElementById("course1").value=`<%=educationDetailsResult[0].course%>`
-            }
-            if(`<%=educationDetailsResult[1].course%>`){
-                document.getElementById("course2").value=`<%=educationDetailsResult[1].course%>`
-            }
-            if(`<%=educationDetailsResult[2].course%>`){
-                document.getElementById("course3").value=`<%=educationDetailsResult[2].course%>`
-            }
-            
+            let educationDetailsResult = JSON.parse(`<%-JSON.stringify(educationDetailsResult)%>`)
+            let i=-1;
+            educationDetailsResult.forEach((element)=>{
+                ++i;
+                document.getElementById(`course${i+1}`).value=educationDetailsResult[i].course
+            })
+
             let languages = JSON.parse(`<%-JSON.stringify(knownLanguagesResult)%>`)
             languages.forEach((element)=>{
                 if(element["languages_name"]){

@@ -212,7 +212,6 @@ const workExperience = () => {
         }
       }
     }
-    console.log(count);
     if (count > 0) {
       for (let j = 0; j < children.length; j++) {
         if (children[j].id === `company${i}_joining_date`) {
@@ -389,6 +388,5 @@ const validation = () => {
     knownTechnologiesValidation &&
     referenceContactsValidation &&
     preferencesValidation;
-  console.log(flag);
   return flag;
 };

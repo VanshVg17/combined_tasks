@@ -227,13 +227,12 @@ const updateDetailsPage = async (req, res) => {
 
     let referenceContactsQuery = `SELECT * FROM reference_contacts WHERE application_id=${id}`;
     let referenceContactsResult = await promisedQuery(referenceContactsQuery);
-    if (referenceContactsResult.length < 1) {
+    if (referenceContactsResult.length < 2) {
       referenceContactsResult.push({});
     }
 
     let preferencesQuery = `SELECT * FROM preferences WHERE application_id=${id}`;
     let preferencesResult = await promisedQuery(preferencesQuery);
-
     res.render("./task8Views/form.ejs", {
       basicDetailsResult,
       educationDetailsResult,
@@ -287,23 +286,14 @@ const updateUser = async (req, res) => {
 
     const { course, course_passing_year, course_percentage } = data;
     let i = -1;
-    let educationDataQuery = `SELECT course FROM education_details WHERE application_id=${id};`;
-    let educationData = await promisedQuery(educationDataQuery);
-    let courses = [];
-    educationData.forEach((element) => {
-      courses.push(element.course);
-    });
+    let educationDeleteQuery = `DELETE FROM education_details WHERE application_id=${id};`;
+    await promisedQuery(educationDeleteQuery);
 
     course.forEach(async (element) => {
       ++i;
       try {
         if (element != "") {
-          let educationDetailsQuery;
-          if (courses.includes(element)) {
-            educationDetailsQuery = `UPDATE education_details SET course="${course[i]}", course_passing_year="${course_passing_year[i]}", course_percentage="${course_percentage[i]}" WHERE application_id=${id} AND course="${element}"`;
-          } else {
-            educationDetailsQuery = `INSERT INTO education_details (application_id, course, course_passing_year, course_percentage) VALUES (${id}, "${course[i]}", "${course_passing_year[i]}", "${course_percentage[i]}")`;
-          }
+          let educationDetailsQuery = `INSERT INTO education_details (application_id, course, course_passing_year, course_percentage) VALUES (${id}, "${course[i]}", "${course_passing_year[i]}", "${course_percentage[i]}")`;
           let educationDetailsResult = await promisedQuery(educationDetailsQuery);
           if (educationDetailsResult.affectedRows < 1) {
             return res.status(500).json({
