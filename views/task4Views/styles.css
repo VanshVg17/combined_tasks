@@ -27,14 +27,14 @@ td {
 .pagination {
   margin: 0 auto;
   margin-top: 20px;
-  max-width: 150px;
+  max-width: 200px;
 }
 
 .total {
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 50px;
-  max-width: 173px;
+  max-width: 200px;
 }
 
 .field-button {

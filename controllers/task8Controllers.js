@@ -24,7 +24,6 @@ const getForm = (req, res) => {
 
 const createUser = async (req, res) => {
   console.log("Inside createUser API");
-  console.log(req.body);
   try {
     const data = utilFunction.convertToNull(req.body);
     const {

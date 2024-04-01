@@ -130,7 +130,6 @@ const showOneResult = async (req, res) => {
     if (subject_result.length === 0) {
       return res.render("./task5Views/errorPage.ejs", { message: "Student Not Found" });
     }
-    console.log(subject_result);
     res.render("./task5Views/fullResult.ejs", {
       student_details: student_details,
       subject_result: subject_result,
@@ -157,7 +156,6 @@ const search = async (req, res) => {
 
       let query4 = `SELECT student_id, SUM(theory+practical) AS total FROM result_27_feb WHERE student_id =${student_id};`;
       let total = await promisedQuery(query4);
-      console.log(total);
 
       if (terminal.length === 0 || prelim.length === 0 || final.length === 0) {
         return res.render("./task5Views/errorPage.ejs", { message: "Student Not Found" });
@@ -172,7 +170,6 @@ const search = async (req, res) => {
         lastpage: false,
       });
     } else {
-      console.log(req.body);
       let { first_name, last_name, email_id, option } = req.body;
 
       first_name = first_name.replaceAll(" ", "");

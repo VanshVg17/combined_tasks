@@ -30,7 +30,6 @@
           headers: { "Content-Type": "application/json" },
         });
         let response = await logout.json();
-        console.log(response);
         if (response.type == "success") {
           window.location.href = "/login";
         }

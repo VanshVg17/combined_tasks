@@ -92,7 +92,6 @@ const login = async () => {
     errorFields[element].style.display = "none";
   });
   let data = getData("login");
-  console.log(data);
   let login = await fetch("/login", {
     method: "post",
     headers: { "Content-Type": "application/json" },

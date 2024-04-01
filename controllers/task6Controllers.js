@@ -12,8 +12,7 @@ const showData = async (req, res) => {
 
   try {
     let query;
-    // let query = req.headers.cookie.split(";")[1].split("=")[1];
-    // console.log(query);
+
     if (req.query.page === undefined) {
       return res.redirect("/task6/query?page=1");
     }
@@ -78,8 +77,6 @@ const showData = async (req, res) => {
     let total_pages = Math.ceil(total_records.length / records_per_page);
 
     if (page > total_pages) {
-      console.log(query, "query1");
-      console.log(records_per_page, "limit1");
       return res.render("./task6Views/grid.ejs", {
         result: result,
         fields: fields,
@@ -107,8 +104,6 @@ const showData = async (req, res) => {
     let fields = Object.keys(result[0]);
 
     if (result.length === 0) {
-      console.log(query, "query");
-      console.log(records_per_page, "limit");
       return res.render("./task6Views/grid.ejs", {
         result: result,
         fields: fields,
@@ -122,8 +117,6 @@ const showData = async (req, res) => {
         order: false,
       });
     }
-    console.log(query, "query2");
-    console.log(records_per_page, "limit2");
     return res.render("./task6Views/grid.ejs", {
       result: result,
       fields: fields,

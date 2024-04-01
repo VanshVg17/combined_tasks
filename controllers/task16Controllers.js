@@ -71,7 +71,6 @@ const registerUser = async (req, res) => {
     });
 
     let insertQuery = `INSERT INTO users(first_name, last_name, contact_no, username, email_id, user_password, salt, activation_key, activated) VALUES ("${first_name}", "${last_name}", "${contact_no}", "${username}", "${email_id}", "${hashedPassword}", "${salt}", "${activationKey}", 0)`;
-    console.log(insertQuery);
     let insertResult = await promisedQuery(insertQuery);
     if (!insertResult.affectedRows) {
       return res.status(500).json({
