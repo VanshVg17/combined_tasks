@@ -23,6 +23,13 @@
         height: 60px;
         width: 100px;
     }
+    #winner {
+        max-width: 150px;
+        margin: 0 auto;
+        margin-top: -20px;
+        margin-bottom: 40px;
+        color: red;
+    }
 </style>
 
 <body>
@@ -46,6 +53,7 @@
                 <td id="td9" onclick="playGame(9)"></td>
             </tr>
         </table>
+        <p id="winner"></p>
         <button onclick="restartGame()">Restart the game</button>
         <script>
             var count = 0;
@@ -76,7 +84,8 @@
                     if (document.getElementById(`td${box1}`).innerHTML == document.getElementById(`td${box2}`).innerHTML
                         && document.getElementById(`td${box2}`).innerHTML == document.getElementById(`td${box3}`).innerHTML
                     ) {
-                        alert(document.getElementById(`td${box2}`).innerHTML + " Won");
+                        let winner = document.getElementById(`td${box2}`).innerHTML
+                        document.getElementById("winner").innerHTML= `${winner} won the game`
                         count--;
                         break;
                     }
@@ -102,7 +111,7 @@
                 }
 
                 if (count == 9) {
-                    alert("Match is Drawn");
+                        document.getElementById("winner").innerHTML= `Game is drawn`
                 }
             }
 
