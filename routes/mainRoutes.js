@@ -1,7 +1,7 @@
 const express = require("express");
 
 const task16Routes = require("./task16Routes");
-const task1Routes = require("./task1Routes");
+const dynamicCellRoutes = require("./dynamicCellRoutes");
 const task2Routes = require("./task2Routes");
 const task3Routes = require("./task3Routes");
 const task4Routes = require("./task4Routes");
@@ -18,7 +18,7 @@ const task13Routes = require("./task13Routes");
 const router = express.Router();
 
 router.use("/", task16Routes);
-router.use("/task1", task1Routes);
+router.use("/task1", dynamicCellRoutes);
 router.use("/task2", task2Routes);
 router.use("/task3", task3Routes);
 router.use("/task4", task4Routes);
