@@ -13,7 +13,7 @@ const getStudents = async (req, res) => {
     if (result.length === 0) {
       return res.send("Data not found");
     }
-    return res.render("./task7Views/students.ejs", { data: result, search: false });
+    return res.render("./delimeterSearchViews/students.ejs", { data: result, search: false });
   } catch (error) {
     console.log("Error inside getStudents API", error);
   }
@@ -73,7 +73,7 @@ const search = async (req, res) => {
       return res.send("No student found");
     }
 
-    res.render("./task7Views/students.ejs", { data: result, search: search });
+    res.render("./delimeterSearchViews/students.ejs", { data: result, search: search });
   } catch (error) {
     console.log("Error inside search API", error);
   }
