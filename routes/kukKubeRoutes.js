@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 
 require("../config/passports")(passport);
-const task2Controller = require("../controllers/task2Controllers");
+const task2Controller = require("../controllers/kukuKubeControllers");
 
 const router = express.Router();
 
