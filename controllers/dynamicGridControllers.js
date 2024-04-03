@@ -4,7 +4,7 @@ const util = require("util");
 let promisedQuery = util.promisify(con.query).bind(con);
 
 const invalidRoute = (req, res) => {
-  res.render("./task6Views/invalidPage");
+  res.render("./dynamicGridViews/invalidPage");
 };
 
 const showData = async (req, res) => {
@@ -21,7 +21,7 @@ const showData = async (req, res) => {
     } else if (req.query.query !== undefined) {
       query = req.query.query;
     } else {
-      return res.render("./task6Views/grid.ejs", {
+      return res.render("./dynamicGridViews/grid.ejs", {
         result: false,
         fields: false,
         page: false,
@@ -37,7 +37,7 @@ const showData = async (req, res) => {
 
     let page = Number(req.query.page);
 
-    let records_per_page;
+    let recordsPerPage;
     let limit;
     if (query.search(/limit/i) > -1) {
       let num = query.search(/limit/i);
@@ -53,37 +53,36 @@ const showData = async (req, res) => {
           break;
         }
       }
-      records_per_page = Number(num1);
+      recordsPerPage = Number(num1);
       limit = "";
     } else {
       if (!isNaN(req.body.limit) && req.body.limit != "") {
-        records_per_page = req.body.limit;
+        recordsPerPage = req.body.limit;
       } else if (req.query.limit !== undefined) {
-        records_per_page = req.query.limit;
+        recordsPerPage = req.query.limit;
       } else {
-        console.log("Inside");
-        records_per_page = 100;
+        recordsPerPage = 100;
       }
 
-      req.query.limit = records_per_page;
+      req.query.limit = recordsPerPage;
 
-      let start = records_per_page * (page - 1);
+      let start = recordsPerPage * (page - 1);
 
-      limit = ` LIMIT ${start}, ${records_per_page}`;
+      limit = ` LIMIT ${start}, ${recordsPerPage}`;
     }
 
-    let total_records = await promisedQuery(query);
+    let totalRecords = await promisedQuery(query);
 
-    let total_pages = Math.ceil(total_records.length / records_per_page);
+    let totalPages = Math.ceil(totalRecords.length / recordsPerPage);
 
-    if (page > total_pages) {
-      return res.render("./task6Views/grid.ejs", {
+    if (page > totalPages) {
+      return res.render("./dynamicGridViews/grid.ejs", {
         result: result,
         fields: fields,
         page: page,
         query: query,
-        lastpage: total_pages,
-        limit: records_per_page,
+        lastpage: totalPages,
+        limit: recordsPerPage,
         status: 404,
         errorMessage: "Page not found",
         field: false,
@@ -104,26 +103,26 @@ const showData = async (req, res) => {
     let fields = Object.keys(result[0]);
 
     if (result.length === 0) {
-      return res.render("./task6Views/grid.ejs", {
+      return res.render("./dynamicGridViews/grid.ejs", {
         result: result,
         fields: fields,
         page: page,
         query: query,
-        lastpage: total_pages,
-        limit: records_per_page,
+        lastpage: totalPages,
+        limit: recordsPerPage,
         status: 404,
         errorMessage: "Data not found",
         field: false,
         order: false,
       });
     }
-    return res.render("./task6Views/grid.ejs", {
+    return res.render("./dynamicGridViews/grid.ejs", {
       result: result,
       fields: fields,
       page: page,
       query: query,
-      lastpage: total_pages,
-      limit: records_per_page,
+      lastpage: totalPages,
+      limit: recordsPerPage,
       status: 200,
       errorMessage: "None",
       field: req.query.field,
@@ -131,7 +130,7 @@ const showData = async (req, res) => {
     });
   } catch (error) {
     if (error.sqlMessage) {
-      res.render("./task6Views/grid.ejs", {
+      res.render("./dynamicGridViews/grid.ejs", {
         result: false,
         fields: false,
         page: false,
@@ -142,7 +141,7 @@ const showData = async (req, res) => {
         errorMessage: error.sqlMessage,
       });
     } else {
-      res.render("./task6Views/grid.ejs", {
+      res.render("./dynamicGridViews/grid.ejs", {
         result: false,
         fields: false,
         page: false,
