@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 
-const controller = require("../controllers/task5Controllers");
+const controller = require("../controllers/attendanceReportControllers");
 require("../config/passports")(passport);
 
 const router = express.Router();

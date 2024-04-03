@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%=student_details[0].first_name%> <%=student_details[0].last_name%> Result</title>
-    <link rel="stylesheet" href="/task5Views/styles.css" />
+    <title><%=studentDetails[0].first_name%> <%=studentDetails[0].last_name%> Result</title>
+    <link rel="stylesheet" href="/attendanceReportViews/styles.css" />
   </head>
   <body>
     <table style="margin: 0 auto; margin-top: 50px;">
@@ -16,8 +16,8 @@
         </tr>
         <tr style="width: 220vh;">
           <td colspan="8">
-          <h2 class="student_name"><%=student_details[0].first_name%> <%=student_details[0].last_name%></h2>
-          <p class="student_attendance">Attendance Percentage - <%=student_details[0].attendance%>%</p></td>
+          <h2 class="student_name"><%=studentDetails[0].first_name%> <%=studentDetails[0].last_name%></h2>
+          <p class="student_attendance">Attendance Percentage - <%=studentDetails[0].attendance%>%</p></td>
         </td>
         </tr>
         <tr>
@@ -38,14 +38,14 @@
         <tbody>
             <% for(let i=0; i<6; i++) {%>
               <tr>
-                <td><%=subject_result[i*3+1].subject_name%></td>
-                <td><%=subject_result[i*3].practical%></td>
-                <td><%=subject_result[i*3].theory%></td>
-                <td><%=subject_result[i*3+1].practical%></td>
-                <td><%=subject_result[i*3+1].theory%></td>
-                <td><%=subject_result[i*3+2].practical%></td>
-                <td><%=subject_result[i*3+2].theory%></td>
-                <th><%=subject_result[i*3].practical +subject_result[i*3].theory+subject_result[i*3+1].practical+subject_result[i*3+1].theory+subject_result[i*3+2].practical+subject_result[i*3+2].theory %></th>
+                <td><%=subjectResult[i*3+1].subject_name%></td>
+                <td><%=subjectResult[i*3].practical%></td>
+                <td><%=subjectResult[i*3].theory%></td>
+                <td><%=subjectResult[i*3+1].practical%></td>
+                <td><%=subjectResult[i*3+1].theory%></td>
+                <td><%=subjectResult[i*3+2].practical%></td>
+                <td><%=subjectResult[i*3+2].theory%></td>
+                <th><%=subjectResult[i*3].practical +subjectResult[i*3].theory+subjectResult[i*3+1].practical+subjectResult[i*3+1].theory+subjectResult[i*3+2].practical+subjectResult[i*3+2].theory %></th>
               </tr>
             <%}%>
         </tbody>
