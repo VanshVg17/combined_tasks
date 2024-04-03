@@ -1,6 +1,6 @@
 const express = require("express");
 
-const controller = require("../controllers/task12Controllers");
+const controller = require("../controllers/comboGeneratorControllers");
 
 const router = express.Router();
 

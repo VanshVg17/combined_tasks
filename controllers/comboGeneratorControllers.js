@@ -7,7 +7,7 @@ let promisedQuery = util.promisify(con.query).bind(con);
 const getPage = (req, res) => {
   console.log("Inside getPage API");
   try {
-    res.render("./task12Views/home.ejs", { data: false });
+    res.render("./comboGeneratorViews/home.ejs", { data: false });
   } catch (error) {
     console.log("Error inside getPage API", error);
   }
@@ -26,7 +26,7 @@ const getField = async (req, res) => {
     if (result.length === 0) {
       return res.send("Enter correct field name");
     }
-    res.render("./task12Views/home", { data: result });
+    res.render("./comboGeneratorViews/home", { data: result });
   } catch (error) {
     console.log("Error inside getField API", error);
   }

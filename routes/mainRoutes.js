@@ -12,7 +12,7 @@ const jobFormRoutes = require("./jobFormRoutes");
 const jobFormAjaxRoutes = require("./jobFormAjaxRoutes");
 const jsonPlaceholderRoutes = require("./jsonPlaceholderRoutes");
 const dateConverterRoutes = require("./dateConverterRoutes");
-const task12Routes = require("./task12Routes");
+const comboGeneratorRoutes = require("./comboGeneratorRoutes");
 const task13Routes = require("./task13Routes");
 
 const router = express.Router();
@@ -29,7 +29,7 @@ router.use("/task8", jobFormRoutes);
 router.use("/task9", jobFormAjaxRoutes);
 router.use("/task10", jsonPlaceholderRoutes);
 router.use("/task11", dateConverterRoutes);
-router.use("/task12", task12Routes);
+router.use("/task12", comboGeneratorRoutes);
 router.use("/task13", task13Routes);
 
 module.exports = router;
