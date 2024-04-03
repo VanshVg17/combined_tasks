@@ -1,7 +1,8 @@
 const express = require("express");
 const passport = require("passport");
 
-const controller = require("../controllers/task8Controllers");
+const createController = require("../controllers/jobForm/createControllers");
+const updateController = require("../controllers/jobForm/updateControllers");
 require("../config/passports")(passport);
 
 const router = express.Router();
@@ -9,27 +10,27 @@ const router = express.Router();
 router.get(
   "/form",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.getForm
+  createController.getForm
 );
 router.post(
   "/createUser",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.createUser
+  createController.createUser
 );
 router.get(
   "/form/:id",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.updateDetailsPage
+  updateController.updateDetailsPage
 );
 router.post(
   "/updateUser/:id",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.updateUser
+  updateController.updateUser
 );
 router.get(
   "/showUsers",
   passport.authenticate("jwt", { session: false, failureRedirect: "/login" }),
-  controller.showUsers
+  updateController.showUsers
 );
 
 module.exports = router;
