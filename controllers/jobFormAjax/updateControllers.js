@@ -53,7 +53,7 @@ const updateDetailsPage = async (req, res) => {
 
     let preferencesQuery = `SELECT * FROM preferences WHERE application_id=${id}`;
     let preferencesResult = await promisedQuery(preferencesQuery);
-    res.render("./jobFormViews/form.ejs", {
+    res.render("./jobFormAjaxViews/form.ejs", {
       basicDetailsResult,
       educationDetailsResult,
       workExperienceResult,
@@ -290,7 +290,10 @@ const updateUser = async (req, res) => {
       });
     }
 
-    return res.redirect("/task8/showUsers");
+    return res.status(200).json({
+      type: "success",
+      message: "User updated successfully",
+    });
   } catch (error) {
     console.log("Update Inside udpateUser", error);
   }
@@ -301,7 +304,7 @@ const showUsers = async (req, res) => {
   try {
     let usersQuery = `SELECT * FROM basic_details;`;
     let usersData = await promisedQuery(usersQuery);
-    res.render("./jobFormViews/users.ejs", { usersData });
+    res.render("./jobFormAjaxViews/users.ejs", { usersData });
   } catch (error) {
     console.log("Error inside showUsers API", error);
   }

@@ -203,7 +203,10 @@ const createUser = async (req, res) => {
         message: "Server Error",
       });
     }
-    return res.redirect("/task8/showUsers");
+    return res.status(200).json({
+      type: "success",
+      message: "User updated successfully",
+    });
   } catch (error) {
     console.log("Error inside createUser API", error);
   }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form 1</title>
-    <link rel="stylesheet" href="/task9Views/styles.css">
+    <link rel="stylesheet" href="/jobFormAjaxViews/styles.css">
 </head>
 
 <body>
@@ -286,7 +286,7 @@
             <span class="prev-button" onclick="prevButton('basic_details')">Previous</span>
             <span class="next-button" onclick="nextButton('education_details','work_experience')">Next</span>
             
-        <script src="/task9Views/validation.js"></script>
+        <script src="/jobFormAjaxViews/validation.js"></script>
         <script>
             let basicDetailsResult = JSON.parse(`<%-JSON.stringify(basicDetailsResult)%>`);
             const addEducationField = () =>{
@@ -617,7 +617,7 @@
                     if(currentPage+1===tabs.length) {
                     let create = await fetch("/task9/createUser", {method:"post", headers: { "Content-Type": "application/json",}, body:JSON.stringify(data)})
                     let response = await create.json();
-                    if(response.type=="Success") {
+                    if(response.type=="success") {
                         localStorage.removeItem("basicDetail");
                         localStorage.removeItem("educationDetail");
                         localStorage.removeItem("knownLanguages");
@@ -633,7 +633,7 @@
                     if(currentPage+1===tabs.length) {
                     let update = await fetch(`/task9/updateUser/${basicDetailsResult[0].application_id}`, {method:"post", headers: { "Content-Type": "application/json",}, body:JSON.stringify(data)})
                     let response = await update.json();
-                    if(response.type=="Success") {
+                    if(response.type=="success") {
                         window.location.href="/task9/showUsers"
                     }
                     return;
