@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 
 require("../config/passports")(passport);
-const task3Controller = require("../controllers/task3Controllers");
+const task3Controller = require("../controllers/ticTacToeControllers");
 
 const router = express.Router();
 
