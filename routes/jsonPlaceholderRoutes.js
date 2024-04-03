@@ -1,6 +1,6 @@
 const express = require("express");
 
-const controller = require("../controllers/task10Controllers");
+const controller = require("../controllers/jsonPlaceholderControllers");
 
 const router = express.Router();
 
