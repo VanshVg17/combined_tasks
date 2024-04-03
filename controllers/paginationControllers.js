@@ -9,28 +9,28 @@ const pagination = async (req, res) => {
 
   let query1 = `SELECT * from student_master_26_feb`;
   let result1 = await promiseQuery(query1);
-  let total_records = result1.length;
+  let totalRecords = result1.length;
 
-  let records_per_page = 20;
-  let total_pages = Math.ceil(total_records / records_per_page);
+  let recordsPerPage = 20;
+  let totalPages = Math.ceil(totalRecords / recordsPerPage);
   try {
-    if (page > total_pages) {
+    if (page > totalPages) {
       return res.send("Page Not Found");
     }
-    let starting = page * records_per_page - records_per_page;
-    let query = `SELECT * from student_master_26_feb LIMIT ${records_per_page} OFFSET ${starting};`;
+    let starting = page * recordsPerPage - recordsPerPage;
+    let query = `SELECT * from student_master_26_feb LIMIT ${recordsPerPage} OFFSET ${starting};`;
     let result = await promiseQuery(query);
     if (result.length === 0) {
       return res.send("No data available");
     }
 
-    res.render("./task4Views/users.ejs", {
+    res.render("./paginationViews/users.ejs", {
       data: result,
       pageno: Number(page),
-      total: total_records,
+      total: totalRecords,
       sort: false,
       order: false,
-      lastpage: total_pages,
+      lastpage: totalPages,
     });
   } catch (error) {
     console.log("Error inside pagination API", error);
@@ -43,28 +43,28 @@ const orderBy = async (req, res) => {
 
   let query1 = `SELECT * from student_master_26_feb`;
   let result1 = await promiseQuery(query1);
-  let total_records = result1.length;
+  let totalRecords = result1.length;
 
-  let records_per_page = 20;
-  let total_pages = Math.ceil(total_records / records_per_page);
+  let recordsPerPage = 20;
+  let totalPages = Math.ceil(totalRecords / recordsPerPage);
   try {
-    if (page > total_pages) {
+    if (page > totalPages) {
       return res.send("Page Not Found");
     }
-    let starting = page * records_per_page - records_per_page;
-    let query = `SELECT * from student_master_26_feb ORDER BY ${field} ${order} LIMIT ${records_per_page} OFFSET ${starting};`;
+    let starting = page * recordsPerPage - recordsPerPage;
+    let query = `SELECT * from student_master_26_feb ORDER BY ${field} ${order} LIMIT ${recordsPerPage} OFFSET ${starting};`;
     let promiseQuery = util.promisify(con.query).bind(con);
     let result = await promiseQuery(query);
     if (result.length === 0) {
       return res.send("No data available");
     }
-    res.render("./task4Views/users.ejs", {
+    res.render("./paginationViews/users.ejs", {
       data: result,
       pageno: Number(page),
-      total: total_records,
+      total: totalRecords,
       sort: field,
       order: order,
-      lastpage: total_pages,
+      lastpage: totalPages,
     });
   } catch (error) {
     console.log("Error inside Sort API", error);
