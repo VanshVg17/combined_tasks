@@ -1,6 +1,6 @@
 const express = require("express");
 
-const task16Routes = require("./task16Routes");
+const authRoutes = require("./authRoutes");
 const dynamicCellRoutes = require("./dynamicCellRoutes");
 const kukKubeRoutes = require("./kukKubeRoutes");
 const ticTacToeRoutes = require("./ticTacToeRoutes");
@@ -17,7 +17,7 @@ const dynamicCityRoutes = require("./dynamicCityRoutes");
 
 const router = express.Router();
 
-router.use("/", task16Routes);
+router.use("/", authRoutes);
 router.use("/task1", dynamicCellRoutes);
 router.use("/task2", kukKubeRoutes);
 router.use("/task3", ticTacToeRoutes);

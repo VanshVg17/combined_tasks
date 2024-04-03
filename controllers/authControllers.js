@@ -10,7 +10,7 @@ let promisedQuery = util.promisify(con.query).bind(con);
 const registerPage = (req, res) => {
   console.log("registerPage API called");
   try {
-    res.render("./task16Views/register.ejs");
+    res.render("./authViews/register.ejs");
   } catch (error) {
     console.log("Error inside registerPage API", error);
   }
@@ -128,7 +128,7 @@ const activateAccount = async (req, res) => {
 const loginPage = (req, res) => {
   console.log("loginPage API called");
   try {
-    res.render("./task16Views/login.ejs");
+    res.render("./authViews/login.ejs");
   } catch (error) {
     console.log("Error inside loginPage API", error);
   }
@@ -176,7 +176,7 @@ const login = async (req, res) => {
 const forgotPasswordPage = (req, res) => {
   console.log("forgotPasswordPage API called");
   try {
-    res.render("./task16Views/forgotPasswordPage.ejs");
+    res.render("./authViews/forgotPasswordPage.ejs");
   } catch (error) {
     console.log("Error inside forgotPasswordPage", error);
   }
@@ -223,7 +223,7 @@ const verifyAccount = async (req, res) => {
 const changePasswordPage = (req, res) => {
   console.log("changePasswordPage API called");
   try {
-    res.render("./task16Views/changePassword.ejs");
+    res.render("./authViews/changePassword.ejs");
   } catch (error) {
     console.log("Error inside changePasswordPage API", error);
   }
@@ -271,7 +271,7 @@ const changePassword = async (req, res) => {
 const dashboard = (req, res) => {
   console.log("dashboard API called");
   try {
-    res.render("./task16Views/dashboard.ejs");
+    res.render("./authViews/dashboard.ejs");
   } catch (error) {
     console.log("Error inside dashboard API", error);
   }
