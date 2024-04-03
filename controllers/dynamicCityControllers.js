@@ -7,7 +7,7 @@ let promisedQuery = util.promisify(con.query).bind(con);
 const show = (req, res) => {
   console.log("show API called");
   try {
-    res.render("./task13Views/form.ejs");
+    res.render("./dynamicCityViews/form.ejs");
   } catch (error) {
     console.log("Error inside show API", error);
   }
