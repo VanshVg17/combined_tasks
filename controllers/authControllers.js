@@ -138,6 +138,8 @@ const login = async (req, res) => {
   console.log("login API called");
   try {
     let { username, password } = req.body;
+    username = username.replaceAll('"', "");
+    password = password.replaceAll('"', "");
     let usernameQuery = `SELECT * FROM users WHERE username="${username}"`;
     let usernameResult = await promisedQuery(usernameQuery);
     if (usernameResult.length == 0) {

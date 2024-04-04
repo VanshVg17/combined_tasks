@@ -42,7 +42,8 @@
       <span id="score2"></span>
       <span id="btn1">0</span>
 
-      <input type="button" value="start" id="start" onclick="timer()" />
+      <input type="button" value="start" id="start" onclick="timer(10)" />
+      <input type="button" value="resume" id="resume" style="display: none" />
       <input type="button" value="pause" id="pause" />
     </div>
 
@@ -86,9 +87,10 @@
         let randomColor;
         while (randomColor == undefined || randomColor.length < 6) {
           randomColor = Math.floor(Math.random() * 16777215).toString(16);
-          console.log(randomColor);
         }
+
         for (let i = 0; i < total; i++) {
+          var1[i].removeEventListener("click", myFun);
           var1[i].style.backgroundColor = "#" + randomColor;
           var1[i].style.opacity = "1";
         }
@@ -96,7 +98,17 @@
         let cells = document.getElementById("table").getElementsByTagName("td");
         let randomNumber = Math.floor(Math.random() * (total - 4) + 4);
 
-        cells[randomNumber].style.opacity = "0.5";
+        if (count >= 0 && count <= 2) {
+          cells[randomNumber].style.opacity = "0.5";
+        } else if (count > 2 && count <= 5) {
+          cells[randomNumber].style.opacity = "0.6";
+        } else if (count > 5 && count <= 8) {
+          cells[randomNumber].style.opacity = "0.7";
+        } else if (count > 8 && count <= 12) {
+          cells[randomNumber].style.opacity = "0.8";
+        } else {
+          cells[randomNumber].style.opacity = "0.9";
+        }
         cells[randomNumber].addEventListener("click", myFun);
 
         var countDisplay = document.getElementById("score");
@@ -105,8 +117,8 @@
         });
       }
 
-      function timer() {
-        var sec = 10;
+      function timer(time) {
+        var sec = time;
         let table = document.getElementById("table");
         table.style.display = "inline-block";
         table.style.marginLeft = "500px";
@@ -127,9 +139,18 @@
         pauseButton.addEventListener("click", () => {
           pauseButton.disabled = true;
           clearInterval(timer);
+          document.getElementById("start").style.display = "none";
+          document.getElementById("resume").style.display = "inline";
+          document.getElementById("resume").onclick = () => {
+            resume(sec);
+          };
           alert("Game Paused");
         });
       }
+
+      let resume = (time) => {
+        timer(time);
+      };
     </script>
   </body>
 </html>
