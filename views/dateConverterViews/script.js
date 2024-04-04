@@ -1,16 +1,32 @@
 const convertTime = () => {
+  if (document.getElementById("error")) {
+    document.getElementById("error").remove();
+  }
   let elements = document.querySelectorAll("*");
   let data = {};
   elements.forEach((element) => {
     if (element.tagName === "INPUT" || element.tagName === "SELECT") {
+      if (element.value == "") {
+        if (document.getElementById("error")) {
+          document.getElementById("error").remove();
+        }
+        const error = document.createElement("p");
+        error.id = "error";
+        error.style.color = "red";
+        error.textContent = "Please Enter all values";
+        document.body.appendChild(error);
+      }
       data[element.name] = element.value;
     }
   });
-  setInterval(showDate(data), 1000);
+  if (!document.getElementById("error")) {
+    showDate(data);
+  }
 };
 
 const showDate = (data) => {
   if (document.getElementById("showDate")) {
+    console.log("inside");
     document.getElementById("showDate").remove();
   }
   let date = new Date(data.year, data.month - 1, data.date, data.hour, data.minute, data.second);
