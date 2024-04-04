@@ -66,7 +66,7 @@ const resultData = async (req, res) => {
   let page;
   try {
     if (req.query.page === undefined) {
-      res.redirect("?page=1");
+      return res.redirect("?page=1");
     }
     page = Number(req.query.page);
 

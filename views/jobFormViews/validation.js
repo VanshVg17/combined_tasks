@@ -1,7 +1,7 @@
 const normalValidation = (fields) => {
   let flag = true;
   for (let i = 0; i < fields.length; i++) {
-    let field = document.getElementById(`${fields[i]}`).value;
+    let field = document.getElementById(`${fields[i]}`).value.trim();
     if (field === "" || field.length === 0) {
       document.getElementById(`${fields[i]}_error`).style.display = "block";
       flag = false;
@@ -14,7 +14,7 @@ const dateValidation = (fields) => {
   let flag = true;
   let dateRegex = /\d{4}-\d{1,2}-\d{1,2}/;
   for (let i = 0; i < fields.length; i++) {
-    let dateField = document.getElementById(`${fields[i]}`).value;
+    let dateField = document.getElementById(`${fields[i]}`).value.trim();
     if (!dateRegex.test(dateField)) {
       document.getElementById(`${fields[i]}_error`).style.display = "block";
       flag = false;
@@ -27,7 +27,7 @@ const percentageValidation = (fields) => {
   let flag = true;
   let percentRegex = /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
   for (let i = 0; i < fields.length; i++) {
-    let percentField = document.getElementById(`${fields[i]}`).value;
+    let percentField = document.getElementById(`${fields[i]}`).value.trim();
     if (!percentRegex.test(percentField)) {
       document.getElementById(`${fields[i]}_error`).style.display = "block";
       flag = false;
@@ -85,7 +85,7 @@ const referenceContactsOptional = (divName) => {
 
   for (let i = 0; i < children.length; i++) {
     if (children[i].tagName == "INPUT") {
-      if (children[i].value !== "") {
+      if (children[i].value.trim() !== "") {
         count++;
       }
     }
@@ -94,7 +94,7 @@ const referenceContactsOptional = (divName) => {
     for (let i = 0; i < children.length; i++) {
       if (children[i].id === `${divName}_number`) {
         let contactRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
-        let contactField = document.getElementById(`${divName}_number`).value;
+        let contactField = document.getElementById(`${divName}_number`).value.trim();
         if (!contactRegex.test(contactField)) {
           document.getElementById(`${divName}_error`).style.display = "block";
           flag = false;
@@ -102,7 +102,7 @@ const referenceContactsOptional = (divName) => {
       } else {
         let fields = [`${divName}_name`, `${divName}_relation`];
         for (let i = 0; i < fields.length; i++) {
-          let field = document.getElementById(`${fields[i]}`).value;
+          let field = document.getElementById(`${fields[i]}`).value.trim();
           if (field === "" || field.length === 0) {
             document.getElementById(`${divName}_error`).style.display = "block";
             flag = false;
@@ -125,7 +125,7 @@ const basicDetail = () => {
 
   let emailValidation = true;
   let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  let emailField = document.getElementById(`email_id`).value;
+  let emailField = document.getElementById(`email_id`).value.trim();
   if (!emailRegex.test(emailField)) {
     document.getElementById(`email_id_error`).style.display = "block";
     emailValidation = false;
@@ -133,7 +133,7 @@ const basicDetail = () => {
 
   let contactValidation = true;
   let contactRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
-  let contactField = document.getElementById(`contact_no`).value;
+  let contactField = document.getElementById(`contact_no`).value.trim();
   if (!contactRegex.test(contactField)) {
     document.getElementById(`contact_no_error`).style.display = "block";
     contactValidation = false;
@@ -141,7 +141,7 @@ const basicDetail = () => {
 
   let zipcodeValidation = true;
   let zipcodeRegex = /(^[A-Za-z]\d[A-Za-z][ ]?\d[A-Za-z]\d$)|(^\d{6}$)/;
-  let zipcodeField = document.getElementById(`zipcode`).value;
+  let zipcodeField = document.getElementById(`zipcode`).value.trim();
   if (!zipcodeRegex.test(zipcodeField)) {
     document.getElementById(`zipcode_error`).style.display = "block";
     zipcodeValidation = false;
@@ -207,7 +207,7 @@ const workExperience = () => {
       normalFields = true;
     for (let i = 0; i < children.length; i++) {
       if (children[i].tagName == "INPUT") {
-        if (children[i].value !== "") {
+        if (children[i].value.trim() !== "") {
           count++;
         }
       }
@@ -324,7 +324,7 @@ const referenceContacts = () => {
 
     for (let i = 0; i < children.length; i++) {
       if (children[i].tagName == "INPUT") {
-        if (children[i].value !== "") {
+        if (children[i].value.trim() !== "") {
           count++;
         }
       }
@@ -333,7 +333,7 @@ const referenceContacts = () => {
       for (let j = 0; j < children.length; j++) {
         if (children[j].id === `reference_contact${i}_number`) {
           let contactRegex = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
-          let contactField = document.getElementById(`reference_contact${i}_number`).value;
+          let contactField = document.getElementById(`reference_contact${i}_number`).value.trim();
           if (!contactRegex.test(contactField)) {
             document.getElementById(`reference_contact1_error`).style.display = "block";
             contactValid = false;
@@ -341,7 +341,7 @@ const referenceContacts = () => {
         } else {
           let normalFields = [`reference_contact${i}_name`, `reference_contact${i}_relation`];
           for (let j = 0; j < normalFields.length; j++) {
-            let field = document.getElementById(`${normalFields[j]}`).value;
+            let field = document.getElementById(`${normalFields[j]}`).value.trim();
             if (field === "" || field.length === 0) {
               document.getElementById(`reference_contact${i}_error`).style.display = "block";
               normalValid = false;
