@@ -142,7 +142,15 @@ const showOneResult = async (req, res) => {
 const search = async (req, res) => {
   console.log("Inside search API");
   try {
-    if (req.body.student_id !== undefined && req.body.student_id !== "") {
+    if (
+      req.body.student_id == "" &&
+      req.body.first_name == "" &&
+      req.body.last_name == "" &&
+      req.body.email_id == ""
+    ) {
+      console.log("Inside");
+      res.redirect("?page=1");
+    } else if (req.body.student_id !== undefined && req.body.student_id !== "") {
       const { student_id } = req.body;
 
       let query1 = `SELECT student_master_27_feb.student_id,first_name, last_name, email_id, SUM(result_27_feb.theory) AS theory, SUM(result_27_feb.practical) AS practical, SUM(result_27_feb.theory + result_27_feb.practical) AS total FROM student_master_27_feb JOIN result_27_feb ON student_master_27_feb.student_id = result_27_feb.student_id WHERE exam_id = 1 AND student_master_27_feb.student_id =${student_id} GROUP BY student_master_27_feb.student_id, student_master_27_feb.first_name, student_master_27_feb.last_name;`;

@@ -18,7 +18,7 @@
 
         <fieldset>
             <legend>
-                <h2>Basic Details</h3>
+                <h2>Basic Details</h2>
             </legend>
 
             <div class="basic-details">
@@ -77,14 +77,14 @@
             <% if(!basicDetailsResult[0].first_name) {%>
            
                 <div id="education-child1" class="select">
-                    <span>Course</span> <select name="course[]" id="course1">
-                        <option name="SSC">SSC</option>
+                    <span>Course</span> <select name="course[]" id="course1" value="SSC">
+                        <option name="SSC" selected>SSC</option>
                         <option name="HSC">HSC</option>
                         <option name="B.Tech">B.Tech</option>
-                        <option name="B.Tech">BCA</option>
-                        <option name="B.Tech">MCA</option>
-                        <option name="B.Tech">MBA</option>
-                        <option name="B.Tech">M.Tech</option>
+                        <option name="BCA">BCA</option>
+                        <option name="MCA">MCA</option>
+                        <option name="MBA">MBA</option>
+                        <option name="M.Tech">M.Tech</option>
                     </select>
                    
                     <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[0].course_passing_year){%> value='<%=educationDetailsResult[0].course_passing_year.getFullYear()%>-<%=educationDetailsResult[0].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[0].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year1"> 
@@ -95,12 +95,12 @@
                 <div id="education-child2" class="select">
                     <span>Course</span> <select name="course[]" id="course2">
                         <option name="SSC">SSC</option>
-                        <option name="HSC">HSC</option>
+                        <option name="HSC" selected>HSC</option>
                         <option name="B.Tech">B.Tech</option>
-                        <option name="B.Tech">BCA</option>
-                        <option name="B.Tech">MCA</option>
-                        <option name="B.Tech">MBA</option>
-                        <option name="B.Tech">M.Tech</option>
+                        <option name="BCA">BCA</option>
+                        <option name="MCA">MCA</option>
+                        <option name="MBA">MBA</option>
+                        <option name="M.Tech">M.Tech</option>
                     </select>
                     <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[1].course_passing_year){%> value='<%=educationDetailsResult[1].course_passing_year.getFullYear()%>-<%=educationDetailsResult[1].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[1].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year2"> 
                     <p name="course_passing_year_error" id="course_passing_year2_error" class="error">Please Enter Your course passing year correctly</p>
@@ -108,15 +108,17 @@
                     <p name="course_percentage_error" id="course_percentage2_error" class="error">Please Enter Your course percentage correctly</p>
                 </div>
                 <div id="education-child3" class="select">
-                    <span>Course</span> <select name="course[]" id="course3">
+                    <span>Course</span>
+                    <select name="course[]" id="course3">
                         <option name="SSC">SSC</option>
                         <option name="HSC">HSC</option>
-                        <option name="B.Tech">B.Tech</option>
-                        <option name="B.Tech">BCA</option>
-                        <option name="B.Tech">MCA</option>
-                        <option name="B.Tech">MBA</option>
-                        <option name="B.Tech">M.Tech</option>
+                        <option name="B.Tech" selected>B.Tech</option>
+                        <option name="BCA">BCA</option>
+                        <option name="MCA">MCA</option>
+                        <option name="MBA">MBA</option>
+                        <option name="M.Tech">M.Tech</option>
                     </select>
+
                     <span>Passing Year</span> <input type="text" placeholder="YYYY-MM-DD" <% if(educationDetailsResult[2].course_passing_year){%> value='<%=educationDetailsResult[2].course_passing_year.getFullYear()%>-<%=educationDetailsResult[2].course_passing_year.getMonth()+1%>-<%=educationDetailsResult[2].course_passing_year.getDate()%>'<%}%> name="course_passing_year[]" id="course_passing_year3"> 
                     <p name="course_passing_year_error" id="course_passing_year3_error" class="error">Please Enter Your course passing year correctly</p>
                       <span>Percentage</span> <input type="text" name="course_percentage[]" value="<%=educationDetailsResult[2].course_percentage%>" id="course_percentage3">
@@ -564,10 +566,12 @@
 
             let educationDetailsResult = JSON.parse(`<%-JSON.stringify(educationDetailsResult)%>`)
             let i=-1;
-            educationDetailsResult.forEach((element)=>{
-                ++i;
-                document.getElementById(`course${i+1}`).value=educationDetailsResult[i].course
-            })
+            if(educationDetailsResult[0].course) {
+                educationDetailsResult.forEach((element)=>{
+                    ++i;
+                    document.getElementById(`course${i+1}`).value=educationDetailsResult[i].course
+                })
+            }
 
             let languages = JSON.parse(`<%-JSON.stringify(knownLanguagesResult)%>`)
             languages.forEach((element)=>{
