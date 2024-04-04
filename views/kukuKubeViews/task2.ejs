@@ -83,8 +83,11 @@
         var total = table1.rows.length * table1.rows[0].cells.length;
         var var1 = document.getElementsByTagName("td");
 
-        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
+        let randomColor;
+        while (randomColor == undefined || randomColor.length < 6) {
+          randomColor = Math.floor(Math.random() * 16777215).toString(16);
+          console.log(randomColor);
+        }
         for (let i = 0; i < total; i++) {
           var1[i].style.backgroundColor = "#" + randomColor;
           var1[i].style.opacity = "1";
