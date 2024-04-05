@@ -62,6 +62,7 @@
         <button onclick="restartGame()">Restart the game</button>
         <script>
             var count = 0;
+            let won = 0;
             function winner(num) {
                 const win = [
                     [1, 2, 3],
@@ -91,32 +92,36 @@
                     ) {
                         let winner = document.getElementById(`td${box2}`).innerHTML
                         document.getElementById("winner").innerHTML= `${winner} won the game`
+                        won=1;
                         count--;
                         break;
                     }
                 }
             }
             function playGame(id) {
-                if (count % 2 == 0) {
-                    if (document.getElementById(`td${id}`).innerHTML != "") {
-                        alert("Invalid Entry");
+                if(won==0) {
+                        if (count % 2 == 0) {
+                        if (document.getElementById(`td${id}`).innerHTML != "") {
+                            alert("Invalid Entry");
+                        } else {
+                            document.getElementById(`td${id}`).innerText = "X"
+                            winner(id)
+                            count++;
+                        }
                     } else {
-                        document.getElementById(`td${id}`).innerText = "X"
-                        winner(id)
-                        count++;
+                        if (document.getElementById(`td${id}`).innerHTML != "") {
+                            alert("Invalid Entry");
+                        } else {
+                            document.getElementById(`td${id}`).innerText = "O"
+                            winner(id)
+                            count++;
+                        }
                     }
-                } else {
-                    if (document.getElementById(`td${id}`).innerHTML != "") {
-                        alert("Invalid Entry");
-                    } else {
-                        document.getElementById(`td${id}`).innerText = "O"
-                        winner(id)
-                        count++;
-                    }
-                }
 
-                if (count == 9) {
-                        document.getElementById("winner").innerHTML= `Game is drawn`
+                    if (count == 9) {
+                            document.getElementById("winner").innerHTML= `Game is drawn`
+                            won=1;
+                    }
                 }
             }
 
