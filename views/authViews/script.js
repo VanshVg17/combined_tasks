@@ -4,7 +4,7 @@ const getData = (id) => {
   let data = {};
   fields.forEach((element) => {
     if (element.tagName === "INPUT") {
-      data[element.name] = element.value;
+      data[element.name] = element.value.trim();
     }
   });
   return data;
@@ -114,7 +114,7 @@ const login = async () => {
 const validation = () => {
   let flag = true;
 
-  let contactField = document.getElementById(`contact_no`).value;
+  let contactField = document.getElementById(`contact_no`).value.trim();
   if (isNaN(contactField.toString()) || contactField.toString().length != 10) {
     document.getElementById("contact_no").style.border = "1px solid red";
     document.getElementById(`contact_no_error`).style.display = "inline";
@@ -123,7 +123,7 @@ const validation = () => {
   }
 
   let emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  let emailField = document.getElementById(`email_id`).value;
+  let emailField = document.getElementById(`email_id`).value.trim();
   if (!emailRegex.test(emailField)) {
     document.getElementById("email_id").style.border = "1px solid red";
     document.getElementById(`email_error`).style.display = "inline";
@@ -131,8 +131,8 @@ const validation = () => {
     flag = false;
   }
 
-  let create_password = document.getElementById("create_password").value;
-  let confirm_password = document.getElementById("confirm_password").value;
+  let create_password = document.getElementById("create_password").value.trim();
+  let confirm_password = document.getElementById("confirm_password").value.trim();
 
   if (create_password.toString().length < 5) {
     document.getElementById("create_password").style.border = "1px solid red";
@@ -150,13 +150,13 @@ const validation = () => {
 const forgotPassword = async () => {
   let data = {};
   let name = document.getElementById("forgot-password-field");
-  if (name.value == "") {
+  if (name.value.trim() == "") {
     name.style.border = "1px solid red";
     document.getElementById("error").style.display = "inline";
     document.getElementById("error").innerHTML = "Above input must not be empty";
     return;
   }
-  data.name = name.value;
+  data.name = name.value.trim();
   let forgotPassword = await fetch("/verifyAccount", {
     method: "post",
     headers: { "Content-Type": "application/json" },
@@ -186,8 +186,8 @@ const changePassword = async () => {
   });
 
   let flag = true;
-  let create_password = document.getElementById("create_password").value;
-  let confirm_password = document.getElementById("confirm_password").value;
+  let create_password = document.getElementById("create_password").value.trim();
+  let confirm_password = document.getElementById("confirm_password").value.trim();
 
   if (create_password.toString().length < 5) {
     document.getElementById("create_password").style.border = "1px solid red";
