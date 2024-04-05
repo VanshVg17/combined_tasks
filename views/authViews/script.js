@@ -42,6 +42,7 @@ const register = async () => {
   if (response.type == "username") {
     document.getElementById("username").style.border = "1px solid red";
     document.getElementById("username_error").style.display = "inline";
+    document.getElementById("email_error").innerHTML = "Username is already taken";
   }
   if (response.type == "email") {
     document.getElementById("email_id").style.border = "1px solid red";
@@ -114,11 +115,19 @@ const login = async () => {
 const validation = () => {
   let flag = true;
 
+  let usernameField = document.getElementById(`username`).value.trim();
+  if (usernameField.length == 0) {
+    document.getElementById("username").style.border = "1px solid red";
+    document.getElementById(`username_error`).style.display = "inline";
+    document.getElementById("username_error").innerHTML = "Username can not be empty";
+    flag = false;
+  }
+
   let contactField = document.getElementById(`contact_no`).value.trim();
   if (isNaN(contactField.toString()) || contactField.toString().length != 10) {
     document.getElementById("contact_no").style.border = "1px solid red";
     document.getElementById(`contact_no_error`).style.display = "inline";
-    document.getElementById("contact_no_error").style.display = "Invalid Mobile Number";
+    document.getElementById("contact_no_error").innerHTML = "Invalid Mobile Number";
     flag = false;
   }
 
